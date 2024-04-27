@@ -110,6 +110,7 @@ struct SignUpView: View {
                         
                         HStack {
                             CustomTextField(placeholder: "Електронна пошта", input: $email)
+                                .autocapitalization(.none)
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 10)

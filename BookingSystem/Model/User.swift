@@ -17,8 +17,9 @@ class User {
     var email: String = ""
     var password: String = ""
     var role: String = ""
+    var date: String = ""
     
-    init(id: String, name: String, surname: String, phone: String, photo: String, email: String, password: String, role: String) {
+    init(id: String, name: String, surname: String, phone: String, photo: String, email: String, password: String, role: String, date: String) {
         self.id = id
         self.name = name
         self.surname = surname
@@ -27,6 +28,7 @@ class User {
         self.email = email
         self.password = password
         self.role = role
+        self.date = date
     }
 }
 

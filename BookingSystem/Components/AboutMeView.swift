@@ -129,7 +129,7 @@ struct AboutMeView: View {
                                     
                                     if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                                         
-                                        let imageName = "\(user!.email)_profile_image.jpg"
+                                        let imageName = "\(user!.id)_profile_image.jpg"
                                         
                                         let fileURL = documentsDirectory.appendingPathComponent(imageName)
                                         

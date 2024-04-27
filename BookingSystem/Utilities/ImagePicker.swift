@@ -60,7 +60,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             // Get document directory URL
             if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 // Create file URL
-                let imageName = "\(user.email)_profile_image.jpg"
+                let imageName = "\(user.id)_profile_image.jpg"
                 let fileURL = documentsDirectory.appendingPathComponent(imageName)
                 
                 if realmManager.updateUserPhotoName(userEmail: user.email, newPhotoName: fileURL.path) {

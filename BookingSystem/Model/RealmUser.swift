@@ -17,5 +17,6 @@ class RealmUser: Object {
     @Persisted var email: String = ""
     @Persisted var password: String = ""
     @Persisted var role: String = ""
+    @Persisted var date: String = ""
 }
 

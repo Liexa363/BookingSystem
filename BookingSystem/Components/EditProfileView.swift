@@ -112,6 +112,7 @@ struct EditProfileView: View {
                         
                         HStack {
                             CustomTextField(placeholder: "Електронна пошта", input: $email)
+                                .autocapitalization(.none)
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 10)
@@ -162,6 +163,7 @@ struct EditProfileView: View {
                         } else {
                             
                             let tempUser = RealmUser()
+                            tempUser.id = user!.id
                             tempUser.name = name
                             tempUser.surname = surname
                             tempUser.phone = phone
@@ -182,6 +184,9 @@ struct EditProfileView: View {
                                     user!.email = email
                                     user!.password = password
                                     user!.role = selectedRole
+                                    
+                                    realmManager.logout()
+                                    realmManager.login(by: email, password, and: selectedRole)
                                     
                                     isSuccessfulEditing = true
                                 } else {

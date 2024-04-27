@@ -74,6 +74,7 @@ struct SignInView: View {
                         
                         HStack {
                             CustomTextField(placeholder: "Електронна пошта", input: $email)
+                                .autocapitalization(.none)
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 10)
@@ -104,6 +105,15 @@ struct SignInView: View {
                         } else {
                             
                             if let tempUser = realmManager.getUser(by: email, and: password) {
+                                
+                                let timestampString = tempUser.date // Assuming you have a timestamp string
+                                if let timestamp = TimeInterval(timestampString) {
+                                    let date = Date(timeIntervalSince1970: timestamp)
+                                    // Now 'date' contains the converted date object
+                                    print(date)
+                                } else {
+                                    print("Invalid timestamp string")
+                                }
                                 
                                 user = tempUser
                                 

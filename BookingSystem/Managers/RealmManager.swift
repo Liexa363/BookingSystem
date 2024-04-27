@@ -33,6 +33,7 @@ class RealmManager: ObservableObject {
                 userRealm.email = user.email
                 userRealm.password = user.password
                 userRealm.role = user.role
+                userRealm.date = String(Date.now.timeIntervalSince1970)
                 
                 realm.add(userRealm)
             }
@@ -60,7 +61,7 @@ class RealmManager: ObservableObject {
                             photo: userRealm.photo,
                             email: userRealm.email,
                             password: userRealm.password,
-                            role: userRealm.role)
+                            role: userRealm.role, date: userRealm.date)
             }
     }
     
@@ -114,8 +115,8 @@ class RealmManager: ObservableObject {
     }
     
     func editUser(user: RealmUser) -> Bool {
-        guard let tempUser = realm.objects(RealmUser.self).filter("email == %@", user.email).first else {
-            print("User with email \(user.email) not found")
+        guard let tempUser = realm.objects(RealmUser.self).filter("id == %@", user.id).first else {
+            print("User with id \(user.id) not found")
             return false
         }
         do {
@@ -140,7 +141,7 @@ class RealmManager: ObservableObject {
             print("User with ID \(userId) not found")
             return false
         }
-
+        
         // Check if any other user has the provided email
         let usersWithSameEmail = realm.objects(RealmUser.self).filter("email == %@ AND NOT id == %@", email, userId)
         return !usersWithSameEmail.isEmpty

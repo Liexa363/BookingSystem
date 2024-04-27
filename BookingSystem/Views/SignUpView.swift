@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignUp: View {
+struct SignUpView: View {
     
     @Binding private var selectedTab: Pages
     
@@ -92,12 +92,7 @@ struct SignUp: View {
                         .alert(isPresented: $isRegistrationError) {
                             Alert(title: Text("Помилка"),
                                   message: Text("Під час реєстрації виникла помилка. Спробуйте, будь ласка, ще раз."),
-                                  dismissButton: .default(Text("OK")) {
-                                withAnimation {
-                                    selectedTab = .signIn
-                                }
-                            }
-                            )
+                                  dismissButton: .default(Text("OK")))
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 10)
@@ -198,5 +193,5 @@ struct SignUp: View {
 }
 
 #Preview {
-    SignUp(selectedTab: .constant(.signUp))
+    SignUpView(selectedTab: .constant(.signUp))
 }

@@ -26,20 +26,50 @@ struct ContentView: View {
                 
                 switch selectedTab {
                 case .getStarted:
-                    GetStarted(selectedTab: $selectedTab)
+                    GetStartedView(selectedTab: $selectedTab)
                 case .information:
-                    Information(selectedTab: $selectedTab)
+                    InformationView(selectedTab: $selectedTab)
                 case .suggestSignInUp:
-                    SuggestSignInUp(selectedTab: $selectedTab)
+                    SuggestSignInUpView(selectedTab: $selectedTab)
                 case .signUp:
-                    SignUp(selectedTab: $selectedTab)
+                    SignUpView(selectedTab: $selectedTab)
                 case .signIn:
-                    SignIn(selectedTab: $selectedTab, user: $user)
-                case .home:
-                    Home(selectedTab: $selectedTab, user: $user)
-                default:
-                    Text("erroeemdmk mmcmdkdm ")
-                        .font(.title)
+                    SignInView(selectedTab: $selectedTab, user: $user)
+                case .clientHome:
+                    ClientHomeView(selectedTab: $selectedTab, user: $user)
+                case .clientBookingList:
+                    ClientHomeView(selectedTab: $selectedTab, user: $user)
+                case .aboutMe:
+                    switch user!.role {
+                    case "Manager":
+                        ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                    case "Master":
+                        MasterHomeView(selectedTab: $selectedTab, user: $user)
+                    case "Administrator":
+                        AdministratorHomeView(selectedTab: $selectedTab, user: $user)
+                    default:
+                        ClientHomeView(selectedTab: $selectedTab, user: $user)
+                    }
+                case .clientFavorites:
+                    ClientHomeView(selectedTab: $selectedTab, user: $user)
+                case .masterBookingList:
+                    MasterHomeView(selectedTab: $selectedTab, user: $user)
+                case .managerBookingList:
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                case .aboutService:
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                case .masterUsefulContacts:
+                    MasterHomeView(selectedTab: $selectedTab, user: $user)
+                case .managerUsefulContacts:
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                case .complaintsList:
+                    AdministratorHomeView(selectedTab: $selectedTab, user: $user)
+                case .serviceStationsList:
+                    AdministratorHomeView(selectedTab: $selectedTab, user: $user)
+                case .usersList:
+                    AdministratorHomeView(selectedTab: $selectedTab, user: $user)
+                case .editProfile:
+                    EditProfileView(selectedTab: $selectedTab, user: $user)
                 }
                 
             } else {
@@ -62,7 +92,19 @@ struct ContentView: View {
                         user = realmManager.getUser(by: credentials.email, and: credentials.password)
                         
                         if user != nil {
-                            selectedTab = .home
+                            
+                            switch user!.role {
+                            case "Client":
+                                selectedTab = .clientHome
+                            case "Manager":
+                                selectedTab = .managerBookingList
+                            case "Master":
+                                selectedTab = .masterBookingList
+                            case "Administrator":
+                                selectedTab = .usersList
+                            default:
+                                selectedTab = .signIn
+                            }
                             
                             isLoaded = true
                         } else {
@@ -73,8 +115,6 @@ struct ContentView: View {
                         }
                         
                     } else {
-                        
-                        print("No credentials found")
                         
                         selectedTab = .getStarted
                         

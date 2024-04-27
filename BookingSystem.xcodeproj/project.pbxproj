@@ -8,15 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB76A2BDA582500B702AB /* RealmManager.swift */; };
-		FA5FB7782BDA6D8C00B702AB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FA5FB7772BDA6D8C00B702AB /* Realm */; };
-		FA5FB77A2BDA6D8C00B702AB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA5FB7792BDA6D8C00B702AB /* RealmSwift */; };
 		FA5FB77E2BDA87A200B702AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB77D2BDA87A200B702AB /* User.swift */; };
 		FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7832BDACDCB00B702AB /* Credentials.swift */; };
 		FA5FB7872BDB9AC400B702AB /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7862BDB9AC400B702AB /* CustomTabBar.swift */; };
-		FA5FB7892BDBA3DF00B702AB /* ClientHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7882BDBA3DF00B702AB /* ClientHome.swift */; };
-		FA5FB78B2BDBAE2D00B702AB /* ManagerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB78A2BDBAE2C00B702AB /* ManagerHome.swift */; };
-		FA5FB78D2BDBAE7F00B702AB /* MasterHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB78C2BDBAE7F00B702AB /* MasterHome.swift */; };
-		FA5FB78F2BDBAEDB00B702AB /* AdministratorHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB78E2BDBAEDB00B702AB /* AdministratorHome.swift */; };
+		FA5FB7892BDBA3DF00B702AB /* ClientHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7882BDBA3DF00B702AB /* ClientHomeView.swift */; };
+		FA5FB78B2BDBAE2D00B702AB /* ManagerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB78A2BDBAE2C00B702AB /* ManagerHomeView.swift */; };
+		FA5FB78D2BDBAE7F00B702AB /* MasterHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB78C2BDBAE7F00B702AB /* MasterHomeView.swift */; };
+		FA5FB78F2BDBAEDB00B702AB /* AdministratorHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB78E2BDBAEDB00B702AB /* AdministratorHomeView.swift */; };
+		FAB3B9512BDBEF0B00820E9B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FAB3B9502BDBEF0B00820E9B /* Realm */; };
+		FAB3B9532BDBEF0B00820E9B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FAB3B9522BDBEF0B00820E9B /* RealmSwift */; };
+		FAB3B9552BDC08AF00820E9B /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3B9542BDC08AF00820E9B /* AboutMeView.swift */; };
+		FAB3B9572BDCF83F00820E9B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3B9562BDCF83F00820E9B /* ImagePicker.swift */; };
+		FAB3B9592BDDA2C900820E9B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3B9582BDDA2C900820E9B /* EditProfileView.swift */; };
 		FAC99D822BD8037700FA3C82 /* BookingSystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D812BD8037700FA3C82 /* BookingSystemApp.swift */; };
 		FAC99D842BD8037700FA3C82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D832BD8037700FA3C82 /* ContentView.swift */; };
 		FAC99D862BD8037B00FA3C82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC99D852BD8037B00FA3C82 /* Assets.xcassets */; };
@@ -28,15 +31,14 @@
 		FAC99D982BD80CFB00FA3C82 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D972BD80CFB00FA3C82 /* Service.swift */; };
 		FAC99D9A2BD8240800FA3C82 /* BookingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D992BD8240800FA3C82 /* BookingList.swift */; };
 		FAC99D9C2BD8248300FA3C82 /* WorkSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D9B2BD8248300FA3C82 /* WorkSchedule.swift */; };
-		FAC99DA02BD825CD00FA3C82 /* GetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D9F2BD825CD00FA3C82 /* GetStarted.swift */; };
-		FAC99DA22BD835CC00FA3C82 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DA12BD835CC00FA3C82 /* Information.swift */; };
-		FAC99DAA2BD99D7C00FA3C82 /* SuggestSignInUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DA92BD99D7C00FA3C82 /* SuggestSignInUp.swift */; };
+		FAC99DA02BD825CD00FA3C82 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D9F2BD825CD00FA3C82 /* GetStartedView.swift */; };
+		FAC99DA22BD835CC00FA3C82 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DA12BD835CC00FA3C82 /* InformationView.swift */; };
+		FAC99DAA2BD99D7C00FA3C82 /* SuggestSignInUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DA92BD99D7C00FA3C82 /* SuggestSignInUpView.swift */; };
 		FAC99DAD2BD9A1AC00FA3C82 /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DAC2BD9A1AC00FA3C82 /* Pages.swift */; };
-		FAC99DAF2BD9A31C00FA3C82 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DAE2BD9A31C00FA3C82 /* SignUp.swift */; };
-		FAC99DB12BD9A35300FA3C82 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DB02BD9A35300FA3C82 /* SignIn.swift */; };
+		FAC99DAF2BD9A31C00FA3C82 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DAE2BD9A31C00FA3C82 /* SignUpView.swift */; };
+		FAC99DB12BD9A35300FA3C82 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DB02BD9A35300FA3C82 /* SignInView.swift */; };
 		FAC99DB52BD9BE0B00FA3C82 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DB42BD9BE0B00FA3C82 /* CustomTextField.swift */; };
 		FAC99DB72BD9BE6700FA3C82 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DB62BD9BE6700FA3C82 /* CustomSecureField.swift */; };
-		FAC99DB92BD9C04700FA3C82 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DB82BD9C04700FA3C82 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,10 +46,13 @@
 		FA5FB77D2BDA87A200B702AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA5FB7832BDACDCB00B702AB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		FA5FB7862BDB9AC400B702AB /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		FA5FB7882BDBA3DF00B702AB /* ClientHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientHome.swift; sourceTree = "<group>"; };
-		FA5FB78A2BDBAE2C00B702AB /* ManagerHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerHome.swift; sourceTree = "<group>"; };
-		FA5FB78C2BDBAE7F00B702AB /* MasterHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterHome.swift; sourceTree = "<group>"; };
-		FA5FB78E2BDBAEDB00B702AB /* AdministratorHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdministratorHome.swift; sourceTree = "<group>"; };
+		FA5FB7882BDBA3DF00B702AB /* ClientHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientHomeView.swift; sourceTree = "<group>"; };
+		FA5FB78A2BDBAE2C00B702AB /* ManagerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerHomeView.swift; sourceTree = "<group>"; };
+		FA5FB78C2BDBAE7F00B702AB /* MasterHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterHomeView.swift; sourceTree = "<group>"; };
+		FA5FB78E2BDBAEDB00B702AB /* AdministratorHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdministratorHomeView.swift; sourceTree = "<group>"; };
+		FAB3B9542BDC08AF00820E9B /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
+		FAB3B9562BDCF83F00820E9B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FAB3B9582BDDA2C900820E9B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		FAC99D7E2BD8037700FA3C82 /* BookingSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookingSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC99D812BD8037700FA3C82 /* BookingSystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSystemApp.swift; sourceTree = "<group>"; };
 		FAC99D832BD8037700FA3C82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,15 +65,14 @@
 		FAC99D972BD80CFB00FA3C82 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		FAC99D992BD8240800FA3C82 /* BookingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingList.swift; sourceTree = "<group>"; };
 		FAC99D9B2BD8248300FA3C82 /* WorkSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSchedule.swift; sourceTree = "<group>"; };
-		FAC99D9F2BD825CD00FA3C82 /* GetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStarted.swift; sourceTree = "<group>"; };
-		FAC99DA12BD835CC00FA3C82 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
-		FAC99DA92BD99D7C00FA3C82 /* SuggestSignInUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestSignInUp.swift; sourceTree = "<group>"; };
+		FAC99D9F2BD825CD00FA3C82 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		FAC99DA12BD835CC00FA3C82 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		FAC99DA92BD99D7C00FA3C82 /* SuggestSignInUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestSignInUpView.swift; sourceTree = "<group>"; };
 		FAC99DAC2BD9A1AC00FA3C82 /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
-		FAC99DAE2BD9A31C00FA3C82 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
-		FAC99DB02BD9A35300FA3C82 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		FAC99DAE2BD9A31C00FA3C82 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		FAC99DB02BD9A35300FA3C82 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		FAC99DB42BD9BE0B00FA3C82 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		FAC99DB62BD9BE6700FA3C82 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
-		FAC99DB82BD9C04700FA3C82 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA5FB77A2BDA6D8C00B702AB /* RealmSwift in Frameworks */,
-				FA5FB7782BDA6D8C00B702AB /* Realm in Frameworks */,
+				FAB3B9532BDBEF0B00820E9B /* RealmSwift in Frameworks */,
+				FAB3B9512BDBEF0B00820E9B /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +102,8 @@
 				FAC99DB62BD9BE6700FA3C82 /* CustomSecureField.swift */,
 				FAC99DB42BD9BE0B00FA3C82 /* CustomTextField.swift */,
 				FA5FB7862BDB9AC400B702AB /* CustomTabBar.swift */,
+				FAB3B9542BDC08AF00820E9B /* AboutMeView.swift */,
+				FAB3B9582BDDA2C900820E9B /* EditProfileView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -161,16 +167,15 @@
 		FAC99D9E2BD8256200FA3C82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FAC99D9F2BD825CD00FA3C82 /* GetStarted.swift */,
-				FAC99DA12BD835CC00FA3C82 /* Information.swift */,
-				FAC99DA92BD99D7C00FA3C82 /* SuggestSignInUp.swift */,
-				FAC99DAE2BD9A31C00FA3C82 /* SignUp.swift */,
-				FAC99DB02BD9A35300FA3C82 /* SignIn.swift */,
-				FAC99DB82BD9C04700FA3C82 /* Home.swift */,
-				FA5FB7882BDBA3DF00B702AB /* ClientHome.swift */,
-				FA5FB78A2BDBAE2C00B702AB /* ManagerHome.swift */,
-				FA5FB78C2BDBAE7F00B702AB /* MasterHome.swift */,
-				FA5FB78E2BDBAEDB00B702AB /* AdministratorHome.swift */,
+				FAC99D9F2BD825CD00FA3C82 /* GetStartedView.swift */,
+				FAC99DA12BD835CC00FA3C82 /* InformationView.swift */,
+				FAC99DA92BD99D7C00FA3C82 /* SuggestSignInUpView.swift */,
+				FAC99DAE2BD9A31C00FA3C82 /* SignUpView.swift */,
+				FAC99DB02BD9A35300FA3C82 /* SignInView.swift */,
+				FA5FB7882BDBA3DF00B702AB /* ClientHomeView.swift */,
+				FA5FB78A2BDBAE2C00B702AB /* ManagerHomeView.swift */,
+				FA5FB78C2BDBAE7F00B702AB /* MasterHomeView.swift */,
+				FA5FB78E2BDBAEDB00B702AB /* AdministratorHomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				FAC99DAC2BD9A1AC00FA3C82 /* Pages.swift */,
+				FAB3B9562BDCF83F00820E9B /* ImagePicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -200,8 +206,8 @@
 			);
 			name = BookingSystem;
 			packageProductDependencies = (
-				FA5FB7772BDA6D8C00B702AB /* Realm */,
-				FA5FB7792BDA6D8C00B702AB /* RealmSwift */,
+				FAB3B9502BDBEF0B00820E9B /* Realm */,
+				FAB3B9522BDBEF0B00820E9B /* RealmSwift */,
 			);
 			productName = BookingSystem;
 			productReference = FAC99D7E2BD8037700FA3C82 /* BookingSystem.app */;
@@ -232,7 +238,7 @@
 			);
 			mainGroup = FAC99D752BD8037700FA3C82;
 			packageReferences = (
-				FA5FB7762BDA6D8C00B702AB /* XCRemoteSwiftPackageReference "realm-swift" */,
+				FAB3B94F2BDBEF0B00820E9B /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = FAC99D7F2BD8037700FA3C82 /* Products */;
 			projectDirPath = "";
@@ -260,32 +266,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAC99DA22BD835CC00FA3C82 /* Information.swift in Sources */,
+				FAC99DA22BD835CC00FA3C82 /* InformationView.swift in Sources */,
 				FAC99DAD2BD9A1AC00FA3C82 /* Pages.swift in Sources */,
 				FAC99D842BD8037700FA3C82 /* ContentView.swift in Sources */,
+				FAB3B9572BDCF83F00820E9B /* ImagePicker.swift in Sources */,
 				FAC99D9A2BD8240800FA3C82 /* BookingList.swift in Sources */,
-				FAC99DB92BD9C04700FA3C82 /* Home.swift in Sources */,
 				FAC99D982BD80CFB00FA3C82 /* Service.swift in Sources */,
-				FA5FB78D2BDBAE7F00B702AB /* MasterHome.swift in Sources */,
+				FAB3B9552BDC08AF00820E9B /* AboutMeView.swift in Sources */,
+				FA5FB78D2BDBAE7F00B702AB /* MasterHomeView.swift in Sources */,
 				FAC99D942BD809EF00FA3C82 /* ServiceStation.swift in Sources */,
-				FAC99DA02BD825CD00FA3C82 /* GetStarted.swift in Sources */,
+				FAC99DA02BD825CD00FA3C82 /* GetStartedView.swift in Sources */,
 				FA5FB77E2BDA87A200B702AB /* User.swift in Sources */,
-				FAC99DB12BD9A35300FA3C82 /* SignIn.swift in Sources */,
+				FAC99DB12BD9A35300FA3C82 /* SignInView.swift in Sources */,
 				FAC99DB52BD9BE0B00FA3C82 /* CustomTextField.swift in Sources */,
-				FAC99DAF2BD9A31C00FA3C82 /* SignUp.swift in Sources */,
+				FAC99DAF2BD9A31C00FA3C82 /* SignUpView.swift in Sources */,
+				FAB3B9592BDDA2C900820E9B /* EditProfileView.swift in Sources */,
 				FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */,
 				FAC99DB72BD9BE6700FA3C82 /* CustomSecureField.swift in Sources */,
 				FA5FB7872BDB9AC400B702AB /* CustomTabBar.swift in Sources */,
 				FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */,
-				FA5FB78B2BDBAE2D00B702AB /* ManagerHome.swift in Sources */,
+				FA5FB78B2BDBAE2D00B702AB /* ManagerHomeView.swift in Sources */,
 				FAC99D9C2BD8248300FA3C82 /* WorkSchedule.swift in Sources */,
 				FAC99D822BD8037700FA3C82 /* BookingSystemApp.swift in Sources */,
-				FA5FB78F2BDBAEDB00B702AB /* AdministratorHome.swift in Sources */,
+				FA5FB78F2BDBAEDB00B702AB /* AdministratorHomeView.swift in Sources */,
 				FAC99D922BD807CF00FA3C82 /* Car.swift in Sources */,
 				FAC99D962BD80B4600FA3C82 /* Location.swift in Sources */,
 				FAC99D902BD8073B00FA3C82 /* RealmUser.swift in Sources */,
-				FAC99DAA2BD99D7C00FA3C82 /* SuggestSignInUp.swift in Sources */,
-				FA5FB7892BDBA3DF00B702AB /* ClientHome.swift in Sources */,
+				FAC99DAA2BD99D7C00FA3C82 /* SuggestSignInUpView.swift in Sources */,
+				FA5FB7892BDBA3DF00B702AB /* ClientHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,11 +430,11 @@
 				DEVELOPMENT_TEAM = D4JTAL586B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Програмі потрібен доступ до фотографій, щоб завантажити фото.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,11 +460,11 @@
 				DEVELOPMENT_TEAM = D4JTAL586B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Програмі потрібен доступ до фотографій, щоб завантажити фото.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,7 +503,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA5FB7762BDA6D8C00B702AB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		FAB3B94F2BDBEF0B00820E9B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -506,14 +514,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FA5FB7772BDA6D8C00B702AB /* Realm */ = {
+		FAB3B9502BDBEF0B00820E9B /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA5FB7762BDA6D8C00B702AB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = FAB3B94F2BDBEF0B00820E9B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		FA5FB7792BDA6D8C00B702AB /* RealmSwift */ = {
+		FAB3B9522BDBEF0B00820E9B /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA5FB7762BDA6D8C00B702AB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = FAB3B94F2BDBEF0B00820E9B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

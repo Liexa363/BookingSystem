@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SuggestSignInUp: View {
+struct SuggestSignInUpView: View {
     
     @Binding private var selectedTab: Pages
     
@@ -86,5 +86,5 @@ struct SuggestSignInUp: View {
 }
 
 #Preview {
-    SuggestSignInUp(selectedTab: .constant(.suggestSignInUp))
+    SuggestSignInUpView(selectedTab: .constant(.suggestSignInUp))
 }

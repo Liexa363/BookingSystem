@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GetStarted: View {
+struct GetStartedView: View {
     
     @Binding private var selectedTab: Pages
     
@@ -58,5 +58,5 @@ struct GetStarted: View {
 }
 
 #Preview {
-    GetStarted(selectedTab: .constant(.getStarted))
+    GetStartedView(selectedTab: .constant(.getStarted))
 }

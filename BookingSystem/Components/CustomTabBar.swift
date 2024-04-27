@@ -28,10 +28,6 @@ struct CustomTabBar: View {
                 Spacer()
             }
         }
-        .onAppear {
-            print("selectedTab: \(selectedTab)")
-            print("tabItems: \(tabItems)")
-        }
         
     }
 }

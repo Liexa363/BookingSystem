@@ -97,5 +97,54 @@ class RealmManager: ObservableObject {
         return realm.objects(Credentials.self).first
     }
     
+    func updateUserPhotoName(userEmail: String, newPhotoName: String) -> Bool {
+        guard let user = realm.objects(RealmUser.self).filter("email == %@", userEmail).first else {
+            print("User with email \(userEmail) not found")
+            return false
+        }
+        do {
+            try realm.write {
+                user.photo = newPhotoName
+            }
+            return true
+        } catch {
+            print("Error updating user photo name: \(error)")
+            return false
+        }
+    }
+    
+    func editUser(user: RealmUser) -> Bool {
+        guard let tempUser = realm.objects(RealmUser.self).filter("email == %@", user.email).first else {
+            print("User with email \(user.email) not found")
+            return false
+        }
+        do {
+            try realm.write {
+                tempUser.name = user.name
+                tempUser.surname = user.surname
+                tempUser.phone = user.phone
+                tempUser.email = user.email
+                tempUser.password = user.password
+                tempUser.role = user.role
+            }
+            return true
+        } catch {
+            print("Error updating user photo name: \(error)")
+            return false
+        }
+    }
+    
+    func isEmailAlreadyTaken(byOtherUser email: String, userId: String) -> Bool {
+        // Fetch the user with the provided ID
+        guard let currentUser = realm.objects(RealmUser.self).filter("id == %@", userId).first else {
+            print("User with ID \(userId) not found")
+            return false
+        }
+
+        // Check if any other user has the provided email
+        let usersWithSameEmail = realm.objects(RealmUser.self).filter("email == %@ AND NOT id == %@", email, userId)
+        return !usersWithSameEmail.isEmpty
+    }
+    
 }
 

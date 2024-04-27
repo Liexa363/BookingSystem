@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignIn: View {
+struct SignInView: View {
     
     @Binding private var selectedTab: Pages
     @Binding var user: User?
@@ -109,7 +109,19 @@ struct SignIn: View {
                                 
                                 realmManager.login(by: email, password, and: tempUser.role)
                                 
-                                selectedTab = .home
+                                switch user!.role {
+                                case "Client":
+                                    selectedTab = .clientHome
+                                case "Manager":
+                                    selectedTab = .managerBookingList
+                                case "Master":
+                                    selectedTab = .masterBookingList
+                                case "Administrator":
+                                    selectedTab = .usersList
+                                default:
+                                    selectedTab = .signIn
+                                }
+                                
                             } else {
                                 
                                 isUserNotFound = true
@@ -135,5 +147,5 @@ struct SignIn: View {
 }
 
 #Preview {
-    SignIn(selectedTab: .constant(.signIn), user: .constant(nil))
+    SignInView(selectedTab: .constant(.signIn), user: .constant(nil))
 }

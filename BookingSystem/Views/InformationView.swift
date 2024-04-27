@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Information: View {
+struct InformationView: View {
     
     @Binding private var selectedTab: Pages
     
@@ -119,5 +119,5 @@ struct Information: View {
 }
 
 #Preview {
-    Information(selectedTab: .constant(.information))
+    InformationView(selectedTab: .constant(.information))
 }

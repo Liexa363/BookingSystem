@@ -64,7 +64,7 @@ struct ContentView: View {
                     MasterHomeView(selectedTab: $selectedTab, user: $user)
                 case .managerUsefulContacts:
                     ManagerHomeView(selectedTab: $selectedTab, user: $user)
-                case .complaintsList:
+                case .carList:
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                 case .serviceStationsList:
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)

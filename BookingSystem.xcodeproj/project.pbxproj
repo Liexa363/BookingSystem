@@ -12,6 +12,7 @@
 		FA22688F2BDEC38200D8731A /* ClientCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688E2BDEC38200D8731A /* ClientCarView.swift */; };
 		FA2268912BDF849200D8731A /* AddCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268902BDF849200D8731A /* AddCarView.swift */; };
 		FA2268932BDF84D400D8731A /* EditCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268922BDF84D400D8731A /* EditCarView.swift */; };
+		FA2268952BE00D2C00D8731A /* CarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268942BE00D2C00D8731A /* CarListView.swift */; };
 		FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB76A2BDA582500B702AB /* RealmManager.swift */; };
 		FA5FB77E2BDA87A200B702AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB77D2BDA87A200B702AB /* User.swift */; };
 		FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7832BDACDCB00B702AB /* Credentials.swift */; };
@@ -52,6 +53,7 @@
 		FA22688E2BDEC38200D8731A /* ClientCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCarView.swift; sourceTree = "<group>"; };
 		FA2268902BDF849200D8731A /* AddCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarView.swift; sourceTree = "<group>"; };
 		FA2268922BDF84D400D8731A /* EditCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCarView.swift; sourceTree = "<group>"; };
+		FA2268942BE00D2C00D8731A /* CarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListView.swift; sourceTree = "<group>"; };
 		FA5FB76A2BDA582500B702AB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FA5FB77D2BDA87A200B702AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA5FB7832BDACDCB00B702AB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				FA22688E2BDEC38200D8731A /* ClientCarView.swift */,
 				FA2268902BDF849200D8731A /* AddCarView.swift */,
 				FA2268922BDF84D400D8731A /* EditCarView.swift */,
+				FA2268942BE00D2C00D8731A /* CarListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				FAC99DA22BD835CC00FA3C82 /* InformationView.swift in Sources */,
 				FAC99DAD2BD9A1AC00FA3C82 /* Pages.swift in Sources */,
 				FAC99D842BD8037700FA3C82 /* ContentView.swift in Sources */,
+				FA2268952BE00D2C00D8731A /* CarListView.swift in Sources */,
 				FA2268932BDF84D400D8731A /* EditCarView.swift in Sources */,
 				FAB3B9572BDCF83F00820E9B /* ImagePicker.swift in Sources */,
 				FAC99D9A2BD8240800FA3C82 /* BookingList.swift in Sources */,

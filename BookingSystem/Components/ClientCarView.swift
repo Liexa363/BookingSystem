@@ -45,7 +45,11 @@ struct ClientCarView: View {
                     if realmManager.isCarExist(forUserID: user!.id) {
                         Button(action: {
                             
-                            selectedTab = .editCar
+                            withAnimation {
+                                
+                                selectedTab = .editCar
+                                
+                            }
                             
                         }) {
                             Image(systemName: "pencil")
@@ -57,7 +61,11 @@ struct ClientCarView: View {
                     } else {
                         Button(action: {
                             
-                            selectedTab = .addCar
+                            withAnimation {
+                                
+                                selectedTab = .addCar
+                                
+                            }
                             
                         }) {
                             Image(systemName: "plus")

@@ -46,8 +46,11 @@ struct AboutMeView: View {
                     Spacer()
                     
                     Button(action: {
-                        
-                        selectedTab = .editProfile
+                        withAnimation {
+                            
+                            selectedTab = .editProfile
+                            
+                        }
                         
                     }) {
                         Image(systemName: "pencil")
@@ -109,7 +112,11 @@ struct AboutMeView: View {
                                 HStack {
                                     Spacer()
                                     Button(action: {
-                                        showSheet = true
+                                        withAnimation  {
+                                            
+                                            showSheet = true
+                                            
+                                        }
                                     }) {
                                         Image(systemName: "camera")
                                             .resizable()
@@ -162,7 +169,11 @@ struct AboutMeView: View {
                                 title: Text("Повідомлення"),
                                 message: Text("Ви впевнені, що хочете вийти?"),
                                 primaryButton: .default(Text("Так")) {
-                                    selectedTab = .suggestSignInUp
+                                    withAnimation {
+                                        
+                                        selectedTab = .suggestSignInUp
+                                        
+                                    }
                                 },
                                 secondaryButton: .cancel(Text("Ні"))
                             )
@@ -216,8 +227,23 @@ struct AboutMeView: View {
                             
                             Spacer()
                             
-                            Text(user!.role)
-                                .font(.body)
+                            switch user!.role {
+                            case "Client":
+                                Text("Клієнт")
+                                    .font(.body)
+                            case "Manager":
+                                Text("Менеджер")
+                                    .font(.body)
+                            case "Master":
+                                Text("Майстер")
+                                    .font(.body)
+                            case "Administrator":
+                                Text("Адміністратор")
+                                    .font(.body)
+                            default:
+                                Text("Error")
+                                    .font(.body)
+                            }
                         }
                         
                     }

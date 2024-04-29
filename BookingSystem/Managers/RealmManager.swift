@@ -249,5 +249,67 @@ class RealmManager: ObservableObject {
         }
     }
     
+    func getCars() -> [Car] {
+        let realmCars = realm.objects(RealmCar.self)
+        var cars: [Car] = []
+        for realmCar in realmCars {
+            let car = Car(
+                id: realmCar.id,
+                brand: realmCar.brand,
+                model: realmCar.model,
+                year: realmCar.year,
+                bodyType: realmCar.bodyType,
+                fuel: realmCar.fuel,
+                engineCapacity: realmCar.engineCapacity,
+                transmission: realmCar.transmission,
+                color: realmCar.color,
+                registrationNumber: realmCar.registrationNumber,
+                ownerID: realmCar.ownerID
+            )
+            cars.append(car)
+        }
+        return cars
+    }
+    
+    func deleteCar(byID id: String) -> Bool {
+        guard let carToDelete = realm.objects(RealmCar.self).filter("id == %@", id).first else {
+            print("Car with ID \(id) not found")
+            return false
+        }
+        
+        do {
+            try realm.write {
+                realm.delete(carToDelete)
+            }
+            return true
+        } catch {
+            print("Error deleting car: \(error)")
+            return false
+        }
+    }
+    
+    func getUser(byOwnerID ownerID: String) -> User? {
+        if let car = realm.objects(RealmCar.self).filter("ownerID == %@", ownerID).first {
+            
+            return realm.objects(RealmUser.self)
+                .filter("id == %@", car.ownerID)
+                .first
+                .map { userRealm in
+                    return User(id: userRealm.id,
+                                name: userRealm.name,
+                                surname: userRealm.surname,
+                                phone: userRealm.phone,
+                                photo: userRealm.photo,
+                                email: userRealm.email,
+                                password: userRealm.password,
+                                role: userRealm.role, date: userRealm.date)
+                }
+            
+        } else {
+            print("No car found for owner ID: \(ownerID)")
+            return nil
+        }
+    }
+    
 }
 

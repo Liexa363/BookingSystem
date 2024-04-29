@@ -18,7 +18,7 @@ struct AdministratorHomeView: View {
     
     let administratorTabItems = [
         TabItem(icon: "person.2.crop.square.stack", title: "Користувачі", tab: .userList),
-        TabItem(icon: "exclamationmark.triangle", title: "Скарги", tab: .complaintsList),
+        TabItem(icon: "car.2", title: "Автомобілі", tab: .carList),
         TabItem(icon: "wrench.adjustable", title: "Сервіси", tab: .serviceStationsList),
         TabItem(icon: "person", title: "Профіль", tab: .aboutMe)
     ]
@@ -29,9 +29,8 @@ struct AdministratorHomeView: View {
             switch selectedTab {
             case .userList:
                 UserListView(selectedTab: $selectedTab, user: $user)
-            case .complaintsList:
-                Text("ComplaintsList")
-                    .font(.title)
+            case .carList:
+                CarListView(selectedTab: $selectedTab, user: $user)
             case .serviceStationsList:
                 Text("ServiceStationsList")
                     .font(.title)

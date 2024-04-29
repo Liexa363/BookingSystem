@@ -141,11 +141,36 @@ struct UserRow: View {
                     self.imageName = fileURL.path
                 }
             }
+            .contextMenu {
+                Text("Номер телефону: \(user.phone)")
+                    .font(.body)
+                
+                switch user.role {
+                case "Client":
+                    Text("Статус: клієнт")
+                        .font(.body)
+                case "Manager":
+                    Text("Статус: менеджер")
+                        .font(.body)
+                case "Master":
+                    Text("Статус: майстер")
+                        .font(.body)
+                case "Administrator":
+                    Text("Статус: адміністратор")
+                        .font(.body)
+                default:
+                    Text("Error")
+                        .font(.body)
+                }
+            }
             
             Button(action: {
-                
-                isDelete = true
-                userForDelete = user
+                withAnimation {
+                    
+                    isDelete = true
+                    userForDelete = user
+                    
+                }
                 
             }) {
                 Image(systemName: "trash")

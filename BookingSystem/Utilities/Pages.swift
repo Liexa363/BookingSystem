@@ -8,6 +8,6 @@
 import Foundation
 
 enum Pages {
-    case getStarted, information, suggestSignInUp, signIn, signUp, clientHome, clientBookingList, aboutMe, clientFavorites, masterBookingList, managerBookingList, aboutService, masterUsefulContacts, managerUsefulContacts, complaintsList, serviceStationsList, usersList, editProfile
+    case getStarted, information, suggestSignInUp, signIn, signUp, clientHome, clientBookingList, aboutMe, clientCar, masterBookingList, managerBookingList, aboutService, masterUsefulContacts, managerUsefulContacts, complaintsList, serviceStationsList, userList, editProfile, addCar, editCar
 }
 

@@ -168,7 +168,7 @@ struct AboutMeView: View {
                             )
                         }
                         
-                        Divider().padding()
+                        Divider().padding(.vertical)
                         
                         HStack {
                             Text("Прізвище")
@@ -181,7 +181,7 @@ struct AboutMeView: View {
                                 .font(.body)
                         }
                         
-                        Divider().padding()
+                        Divider().padding(.vertical)
                         
                         HStack {
                             Text("Телефон")
@@ -194,7 +194,7 @@ struct AboutMeView: View {
                                 .font(.body)
                         }
                         
-                        Divider().padding()
+                        Divider().padding(.vertical)
                         
                         HStack {
                             Text("Пошта")
@@ -207,7 +207,7 @@ struct AboutMeView: View {
                                 .font(.body)
                         }
                         
-                        Divider().padding()
+                        Divider().padding(.vertical)
                         
                         HStack {
                             Text("Статус")

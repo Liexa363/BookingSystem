@@ -11,15 +11,17 @@ struct ClientHomeView: View {
     
     @Binding private var selectedTab: Pages
     @Binding private var user: User?
+    @Binding private var car: Car?
     
-    init(selectedTab: Binding<Pages>, user: Binding<User?>) {
+    init(selectedTab: Binding<Pages>, user: Binding<User?>, car: Binding<Car?>) {
         self._selectedTab = selectedTab
         self._user = user
+        self._car = car
     }
     
     let clientTabItems = [
         TabItem(icon: "house", title: "Домашня", tab: .clientHome),
-        TabItem(icon: "heart.fill", title: "Улюблені", tab: .clientFavorites),
+        TabItem(icon: "car.side", title: "Автомобіль", tab: .clientCar),
         TabItem(icon: "clock", title: "Бронювання", tab: .clientBookingList),
         TabItem(icon: "person", title: "Профіль", tab: .aboutMe)
     ]
@@ -31,9 +33,8 @@ struct ClientHomeView: View {
             case .clientHome:
                 Text("ClientHome")
                     .font(.title)
-            case .clientFavorites:
-                Text("ClientFavorites")
-                    .font(.title)
+            case .clientCar:
+                ClientCarView(selectedTab: $selectedTab, user: $user, car: $car)
             case .clientBookingList:
                 Text("ClientBookingList")
                     .font(.title)
@@ -53,5 +54,5 @@ struct ClientHomeView: View {
 }
 
 #Preview {
-    ClientHomeView(selectedTab: .constant(.clientHome), user: .constant(nil))
+    ClientHomeView(selectedTab: .constant(.clientHome), user: .constant(nil), car: .constant(nil))
 }

@@ -127,7 +127,7 @@ struct SignInView: View {
                                 case "Master":
                                     selectedTab = .masterBookingList
                                 case "Administrator":
-                                    selectedTab = .usersList
+                                    selectedTab = .userList
                                 default:
                                     selectedTab = .signIn
                                 }

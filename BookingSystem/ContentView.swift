@@ -19,6 +19,8 @@ struct ContentView: View {
     
     @State private var isLoaded = false
     
+    @State private var car: Car? = nil
+    
     var body: some View {
         VStack {
             
@@ -36,9 +38,9 @@ struct ContentView: View {
                 case .signIn:
                     SignInView(selectedTab: $selectedTab, user: $user)
                 case .clientHome:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
                 case .clientBookingList:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
                 case .aboutMe:
                     switch user!.role {
                     case "Manager":
@@ -48,10 +50,10 @@ struct ContentView: View {
                     case "Administrator":
                         AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                     default:
-                        ClientHomeView(selectedTab: $selectedTab, user: $user)
+                        ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
                     }
-                case .clientFavorites:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user)
+                case .clientCar:
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
                 case .masterBookingList:
                     MasterHomeView(selectedTab: $selectedTab, user: $user)
                 case .managerBookingList:
@@ -66,10 +68,14 @@ struct ContentView: View {
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                 case .serviceStationsList:
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)
-                case .usersList:
+                case .userList:
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                 case .editProfile:
                     EditProfileView(selectedTab: $selectedTab, user: $user)
+                case .addCar:
+                    AddCarView(selectedTab: $selectedTab, user: $user, car: $car)
+                case .editCar:
+                    EditCarView(selectedTab: $selectedTab, user: $user, car: $car)
                 }
                 
             } else {
@@ -101,7 +107,7 @@ struct ContentView: View {
                             case "Master":
                                 selectedTab = .masterBookingList
                             case "Administrator":
-                                selectedTab = .usersList
+                                selectedTab = .userList
                             default:
                                 selectedTab = .signIn
                             }

@@ -130,7 +130,7 @@ class RealmManager: ObservableObject {
             }
             return true
         } catch {
-            print("Error updating user photo name: \(error)")
+            print("Error updating user data: \(error)")
             return false
         }
     }
@@ -145,6 +145,108 @@ class RealmManager: ObservableObject {
         // Check if any other user has the provided email
         let usersWithSameEmail = realm.objects(RealmUser.self).filter("email == %@ AND NOT id == %@", email, userId)
         return !usersWithSameEmail.isEmpty
+    }
+    
+    
+    func getUsers() -> [User] {
+        let realmUsers = realm.objects(RealmUser.self)
+        var users: [User] = []
+        for realmUser in realmUsers {
+            let user = User(
+                id: realmUser.id,
+                name: realmUser.name,
+                surname: realmUser.surname,
+                phone: realmUser.phone,
+                photo: realmUser.photo,
+                email: realmUser.email,
+                password: realmUser.password,
+                role: realmUser.role,
+                date: realmUser.date
+            )
+            users.append(user)
+        }
+        
+        users.sort { $0.date < $1.date }
+        return users
+    }
+    
+    func deleteUser(withId userId: String) -> Bool {
+        guard let userToDelete = realm.objects(RealmUser.self).filter("id == %@", userId).first else {
+            print("User with ID \(userId) not found")
+            return false
+        }
+        
+        do {
+            try realm.write {
+                realm.delete(userToDelete)
+            }
+            return true
+        } catch {
+            print("Error deleting user: \(error)")
+            return false
+        }
+    }
+    
+    func addCar(car: RealmCar) -> Bool {
+        do {
+            try realm.write {
+                realm.add(car)
+            }
+            return true
+        } catch {
+            print("Error registering car: \(error)")
+            return false
+        }
+    }
+    
+    func isCarExist(forUserID userID: String) -> Bool {
+        let carsWithUserID = realm.objects(RealmCar.self).filter("ownerID == %@", userID)
+        return !carsWithUserID.isEmpty
+    }
+    
+    func getCar(byOwnerID ownerID: String) -> Car? {
+        if let realmCar = realm.objects(RealmCar.self).filter("ownerID == %@", ownerID).first {
+            let car = Car(
+                id: realmCar.id,
+                brand: realmCar.brand,
+                model: realmCar.model,
+                year: realmCar.year,
+                bodyType: realmCar.bodyType,
+                fuel: realmCar.fuel,
+                engineCapacity: realmCar.engineCapacity,
+                transmission: realmCar.transmission,
+                color: realmCar.color,
+                registrationNumber: realmCar.registrationNumber,
+                ownerID: realmCar.ownerID
+            )
+            return car
+        } else {
+            return nil
+        }
+    }
+    
+    func editCar(withNewCarData newCarData: Car) -> Bool {
+        guard let carToUpdate = realm.objects(RealmCar.self).filter("ownerID == %@", newCarData.ownerID).first else {
+            print("Car with ownerID \(newCarData.ownerID) not found")
+            return false
+        }
+        do {
+            try realm.write {
+                carToUpdate.brand = newCarData.brand
+                carToUpdate.model = newCarData.model
+                carToUpdate.year = newCarData.year
+                carToUpdate.bodyType = newCarData.bodyType
+                carToUpdate.fuel = newCarData.fuel
+                carToUpdate.engineCapacity = newCarData.engineCapacity
+                carToUpdate.transmission = newCarData.transmission
+                carToUpdate.color = newCarData.color
+                carToUpdate.registrationNumber = newCarData.registrationNumber
+            }
+            return true
+        } catch {
+            print("Error updating car data: \(error)")
+            return false
+        }
     }
     
 }

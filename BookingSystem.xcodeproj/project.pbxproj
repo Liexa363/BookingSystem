@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA2268892BDE62E100D8731A /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268882BDE62E100D8731A /* UserListView.swift */; };
+		FA22688D2BDEB78100D8731A /* RealmCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688C2BDEB78100D8731A /* RealmCar.swift */; };
+		FA22688F2BDEC38200D8731A /* ClientCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688E2BDEC38200D8731A /* ClientCarView.swift */; };
+		FA2268912BDF849200D8731A /* AddCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268902BDF849200D8731A /* AddCarView.swift */; };
+		FA2268932BDF84D400D8731A /* EditCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268922BDF84D400D8731A /* EditCarView.swift */; };
 		FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB76A2BDA582500B702AB /* RealmManager.swift */; };
 		FA5FB77E2BDA87A200B702AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB77D2BDA87A200B702AB /* User.swift */; };
 		FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7832BDACDCB00B702AB /* Credentials.swift */; };
@@ -42,6 +47,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA2268882BDE62E100D8731A /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
+		FA22688C2BDEB78100D8731A /* RealmCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCar.swift; sourceTree = "<group>"; };
+		FA22688E2BDEC38200D8731A /* ClientCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCarView.swift; sourceTree = "<group>"; };
+		FA2268902BDF849200D8731A /* AddCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarView.swift; sourceTree = "<group>"; };
+		FA2268922BDF84D400D8731A /* EditCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCarView.swift; sourceTree = "<group>"; };
 		FA5FB76A2BDA582500B702AB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FA5FB77D2BDA87A200B702AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA5FB7832BDACDCB00B702AB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -104,6 +114,10 @@
 				FA5FB7862BDB9AC400B702AB /* CustomTabBar.swift */,
 				FAB3B9542BDC08AF00820E9B /* AboutMeView.swift */,
 				FAB3B9582BDDA2C900820E9B /* EditProfileView.swift */,
+				FA2268882BDE62E100D8731A /* UserListView.swift */,
+				FA22688E2BDEC38200D8731A /* ClientCarView.swift */,
+				FA2268902BDF849200D8731A /* AddCarView.swift */,
+				FA2268922BDF84D400D8731A /* EditCarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -153,6 +167,7 @@
 			children = (
 				FAC99D8F2BD8073B00FA3C82 /* RealmUser.swift */,
 				FA5FB77D2BDA87A200B702AB /* User.swift */,
+				FA22688C2BDEB78100D8731A /* RealmCar.swift */,
 				FAC99D912BD807CF00FA3C82 /* Car.swift */,
 				FAC99D932BD809EF00FA3C82 /* ServiceStation.swift */,
 				FAC99D952BD80B4600FA3C82 /* Location.swift */,
@@ -269,8 +284,10 @@
 				FAC99DA22BD835CC00FA3C82 /* InformationView.swift in Sources */,
 				FAC99DAD2BD9A1AC00FA3C82 /* Pages.swift in Sources */,
 				FAC99D842BD8037700FA3C82 /* ContentView.swift in Sources */,
+				FA2268932BDF84D400D8731A /* EditCarView.swift in Sources */,
 				FAB3B9572BDCF83F00820E9B /* ImagePicker.swift in Sources */,
 				FAC99D9A2BD8240800FA3C82 /* BookingList.swift in Sources */,
+				FA2268912BDF849200D8731A /* AddCarView.swift in Sources */,
 				FAC99D982BD80CFB00FA3C82 /* Service.swift in Sources */,
 				FAB3B9552BDC08AF00820E9B /* AboutMeView.swift in Sources */,
 				FA5FB78D2BDBAE7F00B702AB /* MasterHomeView.swift in Sources */,
@@ -280,12 +297,14 @@
 				FAC99DB12BD9A35300FA3C82 /* SignInView.swift in Sources */,
 				FAC99DB52BD9BE0B00FA3C82 /* CustomTextField.swift in Sources */,
 				FAC99DAF2BD9A31C00FA3C82 /* SignUpView.swift in Sources */,
+				FA22688D2BDEB78100D8731A /* RealmCar.swift in Sources */,
 				FAB3B9592BDDA2C900820E9B /* EditProfileView.swift in Sources */,
 				FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */,
 				FAC99DB72BD9BE6700FA3C82 /* CustomSecureField.swift in Sources */,
 				FA5FB7872BDB9AC400B702AB /* CustomTabBar.swift in Sources */,
 				FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */,
 				FA5FB78B2BDBAE2D00B702AB /* ManagerHomeView.swift in Sources */,
+				FA22688F2BDEC38200D8731A /* ClientCarView.swift in Sources */,
 				FAC99D9C2BD8248300FA3C82 /* WorkSchedule.swift in Sources */,
 				FAC99D822BD8037700FA3C82 /* BookingSystemApp.swift in Sources */,
 				FA5FB78F2BDBAEDB00B702AB /* AdministratorHomeView.swift in Sources */,
@@ -293,6 +312,7 @@
 				FAC99D962BD80B4600FA3C82 /* Location.swift in Sources */,
 				FAC99D902BD8073B00FA3C82 /* RealmUser.swift in Sources */,
 				FAC99DAA2BD99D7C00FA3C82 /* SuggestSignInUpView.swift in Sources */,
+				FA2268892BDE62E100D8731A /* UserListView.swift in Sources */,
 				FA5FB7892BDBA3DF00B702AB /* ClientHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

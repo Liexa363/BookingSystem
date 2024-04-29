@@ -17,7 +17,7 @@ struct AdministratorHomeView: View {
     }
     
     let administratorTabItems = [
-        TabItem(icon: "person.2.crop.square.stack", title: "Користувачі", tab: .usersList),
+        TabItem(icon: "person.2.crop.square.stack", title: "Користувачі", tab: .userList),
         TabItem(icon: "exclamationmark.triangle", title: "Скарги", tab: .complaintsList),
         TabItem(icon: "wrench.adjustable", title: "Сервіси", tab: .serviceStationsList),
         TabItem(icon: "person", title: "Профіль", tab: .aboutMe)
@@ -27,9 +27,8 @@ struct AdministratorHomeView: View {
         VStack {
             
             switch selectedTab {
-            case .usersList:
-                Text("AdministratorHome")
-                    .font(.title)
+            case .userList:
+                UserListView(selectedTab: $selectedTab, user: $user)
             case .complaintsList:
                 Text("ComplaintsList")
                     .font(.title)
@@ -52,5 +51,5 @@ struct AdministratorHomeView: View {
 }
 
 #Preview {
-    AdministratorHomeView(selectedTab: .constant(.usersList), user: .constant(nil))
+    AdministratorHomeView(selectedTab: .constant(.userList), user: .constant(nil))
 }

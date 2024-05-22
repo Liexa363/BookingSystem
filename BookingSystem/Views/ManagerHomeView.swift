@@ -10,10 +10,12 @@ import SwiftUI
 struct ManagerHomeView: View {
     @Binding private var selectedTab: Pages
     @Binding private var user: User?
+    @Binding private var serviceStation: ServiceStation?
     
-    init(selectedTab: Binding<Pages>, user: Binding<User?>) {
+    init(selectedTab: Binding<Pages>, user: Binding<User?>, serviceStation: Binding<ServiceStation?>) {
         self._selectedTab = selectedTab
         self._user = user
+        self._serviceStation = serviceStation
     }
     
     let managerTabItems = [
@@ -31,8 +33,7 @@ struct ManagerHomeView: View {
                 Text("BookingList")
                     .font(.title)
             case .aboutService:
-                Text("AboutService")
-                    .font(.title)
+                ManagerServiceStationView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
             case .managerUsefulContacts:
                 Text("UsefulContacts")
                     .font(.title)
@@ -52,5 +53,5 @@ struct ManagerHomeView: View {
 }
 
 #Preview {
-    ManagerHomeView(selectedTab: .constant(.managerBookingList), user: .constant(nil))
+    ManagerHomeView(selectedTab: .constant(.managerBookingList), user: .constant(nil), serviceStation: .constant(nil))
 }

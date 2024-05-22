@@ -7,9 +7,15 @@
 
 import Foundation
 
-struct Service {
-    var name: String
-    var description: String
-    var price: String
+class Service: ObservableObject, Identifiable {
+    var name: String = ""
+    var serviceDescription: String = ""
+    var price: String = ""
+    
+    init(name: String, serviceDescription: String, price: String) {
+        self.name = name
+        self.serviceDescription = serviceDescription
+        self.price = price
+    }
 }
 

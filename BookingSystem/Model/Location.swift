@@ -7,10 +7,17 @@
 
 import Foundation
 
-struct Location {
-    var country: String
-    var city: String
-    var street: String
-    var houseNumber: String
+class Location: ObservableObject {
+    var country: String = ""
+    var city: String = ""
+    var street: String = ""
+    var houseNumber: String = ""
+    
+    init(country: String, city: String, street: String, houseNumber: String) {
+        self.country = country
+        self.city = city
+        self.street = street
+        self.houseNumber = houseNumber
+    }
 }
 

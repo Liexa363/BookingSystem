@@ -21,6 +21,8 @@ struct ContentView: View {
     
     @State private var car: Car? = nil
     
+    @State private var serviceStation: ServiceStation? = nil
+    
     var body: some View {
         VStack {
             
@@ -44,7 +46,7 @@ struct ContentView: View {
                 case .aboutMe:
                     switch user!.role {
                     case "Manager":
-                        ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                        ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
                     case "Master":
                         MasterHomeView(selectedTab: $selectedTab, user: $user)
                     case "Administrator":
@@ -57,13 +59,13 @@ struct ContentView: View {
                 case .masterBookingList:
                     MasterHomeView(selectedTab: $selectedTab, user: $user)
                 case .managerBookingList:
-                    ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
                 case .aboutService:
-                    ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
                 case .masterUsefulContacts:
                     MasterHomeView(selectedTab: $selectedTab, user: $user)
                 case .managerUsefulContacts:
-                    ManagerHomeView(selectedTab: $selectedTab, user: $user)
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
                 case .carList:
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                 case .serviceStationsList:
@@ -76,6 +78,10 @@ struct ContentView: View {
                     AddCarView(selectedTab: $selectedTab, user: $user, car: $car)
                 case .editCar:
                     EditCarView(selectedTab: $selectedTab, user: $user, car: $car)
+                case .addServiceStation:
+                    AddServiceStationView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
+                case .editServiceStation:
+                    EditServiceStationView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
                 }
                 
             } else {

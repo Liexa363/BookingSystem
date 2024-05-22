@@ -8,8 +8,7 @@
 import Foundation
 
 struct WorkSchedule {
-    var startDay: String
-    var endDay: String
+    var day: String
     var startTime: String
     var endTime: String
 }

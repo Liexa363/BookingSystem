@@ -32,8 +32,7 @@ struct AdministratorHomeView: View {
             case .carList:
                 CarListView(selectedTab: $selectedTab, user: $user)
             case .serviceStationsList:
-                Text("ServiceStationsList")
-                    .font(.title)
+                ServiceStationListView(selectedTab: $selectedTab, user: $user)
             case .aboutMe:
                 AboutMeView(selectedTab: $selectedTab, user: $user)
             default:

@@ -31,8 +31,7 @@ struct ClientHomeView: View {
             
             switch selectedTab {
             case .clientHome:
-                Text("ClientHome")
-                    .font(.title)
+                ClientServiceStationsView(selectedTab: $selectedTab, user: $user)
             case .clientCar:
                 ClientCarView(selectedTab: $selectedTab, user: $user, car: $car)
             case .clientBookingList:

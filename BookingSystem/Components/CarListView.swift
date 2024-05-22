@@ -30,49 +30,59 @@ struct CarListView: View {
             Color("backgroundColor")
                 .ignoresSafeArea()
             
-            ZStack {
-                
-                Color.white
-                
-                VStack {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible())]) {
-                            ForEach(0..<cars.count, id: \.self) { index in
-                                CarRow(car: cars[index], isDelete: $isDelete, carForDelete: $carForDelete)
-                                
-                                Divider().padding(.horizontal)
-                            }
-                        }
-                        .padding()
-                    }
-                    .onAppear {
-                        
-                        cars = realmManager.getCars()
-                    }
-                }
-                
+            VStack {
                 HStack {
+                    Text("Автомобілі")
+                        .font(.title)
+                }
+                .padding(.horizontal)
+                
+                ZStack {
                     
-                }
-                .hidden()
-                .alert(isPresented: $isDelete) {
-                    Alert(
-                        title: Text("Повідомлення"),
-                        message: Text("Ви впевнені, що хочете видалити автомобіль?"),
-                        primaryButton: .default(Text("Так")) {
-                            if realmManager.deleteCar(byID: carForDelete.id) {
-                                cars = realmManager.getCars()
-                            } else {
-                                
+                    Color.white
+                    
+                    VStack {
+                        ScrollView {
+                            LazyVGrid(columns: [GridItem(.flexible())]) {
+                                ForEach(0..<cars.count, id: \.self) { index in
+                                    CarRow(car: cars[index], isDelete: $isDelete, carForDelete: $carForDelete)
+                                    
+                                    Divider().padding(.horizontal)
+                                }
                             }
-                        },
-                        secondaryButton: .cancel(Text("Ні"))
-                    )
+                            .padding()
+                        }
+                        .onAppear {
+                            
+                            cars = realmManager.getCars()
+                        }
+                    }
+                    
+                    HStack {
+                        
+                    }
+                    .hidden()
+                    .alert(isPresented: $isDelete) {
+                        Alert(
+                            title: Text("Повідомлення"),
+                            message: Text("Ви впевнені, що хочете видалити автомобіль?"),
+                            primaryButton: .default(Text("Так")) {
+                                if realmManager.deleteCar(byID: carForDelete.id) {
+                                    cars = realmManager.getCars()
+                                } else {
+                                    
+                                }
+                            },
+                            secondaryButton: .cancel(Text("Ні"))
+                        )
+                    }
                 }
+                .cornerRadius(20)
+                .shadow(radius: 10)
+                .padding(.horizontal)
+                .padding(.bottom)
+                .padding(.top, 5)
             }
-            .cornerRadius(20)
-            .shadow(radius: 10)
-            .padding()
             
         }
     }

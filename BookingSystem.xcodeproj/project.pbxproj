@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA05B0972BFE690900F4F939 /* ServiceStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */; };
+		FA05B0992BFE923300F4F939 /* ClientServiceStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */; };
 		FA2268892BDE62E100D8731A /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268882BDE62E100D8731A /* UserListView.swift */; };
 		FA22688D2BDEB78100D8731A /* RealmCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688C2BDEB78100D8731A /* RealmCar.swift */; };
 		FA22688F2BDEC38200D8731A /* ClientCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688E2BDEC38200D8731A /* ClientCarView.swift */; };
@@ -56,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStationListView.swift; sourceTree = "<group>"; };
+		FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceStationsView.swift; sourceTree = "<group>"; };
 		FA2268882BDE62E100D8731A /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		FA22688C2BDEB78100D8731A /* RealmCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCar.swift; sourceTree = "<group>"; };
 		FA22688E2BDEC38200D8731A /* ClientCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCarView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				FA308D782BFCE893006A94C6 /* AddServiceStationView.swift */,
 				FA308D7A2BFCE8AC006A94C6 /* EditServiceStationView.swift */,
 				FA308D7C2BFCFEE8006A94C6 /* ServiceStationViewModel.swift */,
+				FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */,
+				FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				FA2268912BDF849200D8731A /* AddCarView.swift in Sources */,
 				FA308D732BFCDBA5006A94C6 /* RealmLocation.swift in Sources */,
 				FAC99D982BD80CFB00FA3C82 /* Service.swift in Sources */,
+				FA05B0992BFE923300F4F939 /* ClientServiceStationsView.swift in Sources */,
 				FAB3B9552BDC08AF00820E9B /* AboutMeView.swift in Sources */,
 				FA5FB78D2BDBAE7F00B702AB /* MasterHomeView.swift in Sources */,
 				FAC99D942BD809EF00FA3C82 /* ServiceStation.swift in Sources */,
@@ -329,6 +336,7 @@
 				FAC99DAF2BD9A31C00FA3C82 /* SignUpView.swift in Sources */,
 				FA22688D2BDEB78100D8731A /* RealmCar.swift in Sources */,
 				FAB3B9592BDDA2C900820E9B /* EditProfileView.swift in Sources */,
+				FA05B0972BFE690900F4F939 /* ServiceStationListView.swift in Sources */,
 				FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */,
 				FA308D792BFCE893006A94C6 /* AddServiceStationView.swift in Sources */,
 				FA308D6F2BFCD03B006A94C6 /* ManagerServiceStationView.swift in Sources */,

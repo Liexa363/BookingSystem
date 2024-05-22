@@ -84,12 +84,12 @@ struct ManagerServiceStationView: View {
                     
                     Color.white
                     
-                    ScrollView {
-                        if realmManager.isServiceStationExists(forManagerID: user!.id) {
+                    if realmManager.isServiceStationExists(forManagerID: user!.id) {
+                        ScrollView {
                             
                             if isServiceStationDataLoaded {
                                 
-                                VStack {
+                                 VStack {
                                     
                                     HStack {
                                         Text("Назва")
@@ -316,11 +316,13 @@ struct ManagerServiceStationView: View {
                                 
                             }
                             
-                        } else {
-                            Text("Сервіс не доданий")
-                                .font(.title3)
-                                .foregroundStyle(.secondary)
                         }
+                    } else {
+                        
+                        Text("Сервіс не доданий")
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
+                        
                     }
                 }
                 .onAppear {

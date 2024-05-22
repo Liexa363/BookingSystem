@@ -406,7 +406,7 @@ class RealmManager: ObservableObject {
         serviceStation.location?.street = newServiceStationData.location.street
         serviceStation.location?.houseNumber = newServiceStationData.location.houseNumber
         
-        for (index, service) in newServiceStationData.services.enumerated() {
+        for (_, service) in newServiceStationData.services.enumerated() {
             let tempService = RealmService()
             tempService.name = service.name
             tempService.serviceDescription = service.serviceDescription
@@ -415,7 +415,7 @@ class RealmManager: ObservableObject {
             serviceStation.services.append(tempService)
         }
         
-        for (index, service) in newServiceStationData.workSchedule.enumerated() {
+        for (_, service) in newServiceStationData.workSchedule.enumerated() {
             let tempWorkSchedule = RealmWorkSchedule()
             tempWorkSchedule.day = service.day
             tempWorkSchedule.startTime = service.startTime
@@ -435,53 +435,104 @@ class RealmManager: ObservableObject {
             print("Error adding service station: \(error)")
             return false
         }
-        
-//        do {
-//            try realm.write {
-//                stationToUpdate.name = newServiceStationData.name
-//                stationToUpdate.managerID = newServiceStationData.managerID
-//                
-//                // Update location
-//                if let location = stationToUpdate.location {
-//                    location.country = newServiceStationData.location.country
-//                    location.city = newServiceStationData.location.city
-//                    location.street = newServiceStationData.location.street
-//                    location.houseNumber = newServiceStationData.location.houseNumber
-//                } else {
-//                    let newLocation = RealmLocation()
-//                    newLocation.country = newServiceStationData.location.country
-//                    newLocation.city = newServiceStationData.location.city
-//                    newLocation.street = newServiceStationData.location.street
-//                    newLocation.houseNumber = newServiceStationData.location.houseNumber
-//                    stationToUpdate.location = newLocation
-//                }
-//                
-//                // Update services
-//                stationToUpdate.services.removeAll()
-//                for service in newServiceStationData.services {
-//                    let realmService = RealmService()
-//                    realmService.name = service.name
-//                    realmService.serviceDescription = service.serviceDescription
-//                    realmService.price = service.price
-//                    stationToUpdate.services.append(realmService)
-//                }
-//                
-//                // Update work schedule
-//                stationToUpdate.workSchedule.removeAll()
-//                for schedule in newServiceStationData.workSchedule {
-//                    let realmSchedule = RealmWorkSchedule()
-//                    realmSchedule.day = schedule.day
-//                    realmSchedule.startTime = schedule.startTime
-//                    realmSchedule.endTime = schedule.endTime
-//                    stationToUpdate.workSchedule.append(realmSchedule)
-//                }
-//            }
-//            return true
-//        } catch {
-//            print("Error updating service station data: \(error)")
-//            return false
-//        }
     }
+    
+    func getServiceStations() -> [ServiceStation] {
+        let realmServiceStations = realm.objects(RealmServiceStation.self)
+        var serviceStations: [ServiceStation] = []
+        
+        for realmServiceStation in realmServiceStations {
+            let location = Location(
+                country: realmServiceStation.location?.country ?? "",
+                city: realmServiceStation.location?.city ?? "",
+                street: realmServiceStation.location?.street ?? "",
+                houseNumber: realmServiceStation.location?.houseNumber ?? ""
+            )
+            
+            let services = Array(realmServiceStation.services.map { realmService in
+                Service(
+                    name: realmService.name,
+                    serviceDescription: realmService.serviceDescription,
+                    price: realmService.price
+                )
+            })
+            
+            let workSchedule = Array(realmServiceStation.workSchedule.map { realmWorkSchedule in
+                WorkSchedule(
+                    day: realmWorkSchedule.day,
+                    startTime: realmWorkSchedule.startTime,
+                    endTime: realmWorkSchedule.endTime
+                )
+            })
+            
+            let serviceStation = ServiceStation(
+                id: realmServiceStation.id,
+                name: realmServiceStation.name,
+                location: location,
+                services: services,
+                managerID: realmServiceStation.managerID,
+                workSchedule: workSchedule
+            )
+            
+            serviceStations.append(serviceStation)
+        }
+        
+        return serviceStations
+    }
+    
+    func deleteServiceStation(byID id: String) -> Bool {
+        // Find the service station to delete by its ID
+        guard let stationToDelete = realm.objects(RealmServiceStation.self).filter("id == %@", id).first else {
+            print("Service Station with ID \(id) not found")
+            return false
+        }
+        
+        do {
+            try realm.write {
+                // Delete related location if it exists
+                if let location = stationToDelete.location {
+                    realm.delete(location)
+                }
+                
+                // Delete related services
+                realm.delete(stationToDelete.services)
+                
+                // Delete related work schedule
+                realm.delete(stationToDelete.workSchedule)
+                
+                // Delete the service station itself
+                realm.delete(stationToDelete)
+            }
+            return true
+        } catch {
+            print("Error deleting service station: \(error)")
+            return false
+        }
+    }
+    
+    func getUser(byManagerID managerID: String) -> User? {
+        if let serviceStation = realm.objects(RealmServiceStation.self).filter("managerID == %@", managerID).first {
+            
+            return realm.objects(RealmUser.self)
+                .filter("id == %@", serviceStation.managerID)
+                .first
+                .map { userRealm in
+                    return User(id: userRealm.id,
+                                name: userRealm.name,
+                                surname: userRealm.surname,
+                                phone: userRealm.phone,
+                                photo: userRealm.photo,
+                                email: userRealm.email,
+                                password: userRealm.password,
+                                role: userRealm.role, date: userRealm.date)
+                }
+            
+        } else {
+            print("No car found for owner ID: \(managerID)")
+            return nil
+        }
+    }
+    
     
 }
 

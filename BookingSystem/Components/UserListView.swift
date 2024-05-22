@@ -30,49 +30,59 @@ struct UserListView: View {
             Color("backgroundColor")
                 .ignoresSafeArea()
             
-            ZStack {
-                
-                Color.white
-                
-                VStack {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible())]) {
-                            ForEach(0..<users.count, id: \.self) { index in
-                                UserRow(user: users[index], isDelete: $isDelete, userForDelete: $userForDelete)
-                                
-                                Divider().padding(.horizontal)
-                            }
-                        }
-                        .padding()
-                    }
-                    .onAppear {
-                        
-                        users = realmManager.getUsers()
-                    }
-                }
-                
+            VStack {
                 HStack {
+                    Text("Користувачі")
+                        .font(.title)
+                }
+                .padding(.horizontal)
+                
+                ZStack {
                     
-                }
-                .hidden()
-                .alert(isPresented: $isDelete) {
-                    Alert(
-                        title: Text("Повідомлення"),
-                        message: Text("Ви впевнені, що хочете видалити користувача?"),
-                        primaryButton: .default(Text("Так")) {
-                            if realmManager.deleteUser(withId: userForDelete.id) {
-                                users = realmManager.getUsers()
-                            } else {
-                                
+                    Color.white
+                    
+                    VStack {
+                        ScrollView {
+                            LazyVGrid(columns: [GridItem(.flexible())]) {
+                                ForEach(0..<users.count, id: \.self) { index in
+                                    UserRow(user: users[index], isDelete: $isDelete, userForDelete: $userForDelete)
+                                    
+                                    Divider().padding(.horizontal)
+                                }
                             }
-                        },
-                        secondaryButton: .cancel(Text("Ні"))
-                    )
+                            .padding()
+                        }
+                        .onAppear {
+                            
+                            users = realmManager.getUsers()
+                        }
+                    }
+                    
+                    HStack {
+                        
+                    }
+                    .hidden()
+                    .alert(isPresented: $isDelete) {
+                        Alert(
+                            title: Text("Повідомлення"),
+                            message: Text("Ви впевнені, що хочете видалити користувача?"),
+                            primaryButton: .default(Text("Так")) {
+                                if realmManager.deleteUser(withId: userForDelete.id) {
+                                    users = realmManager.getUsers()
+                                } else {
+                                    
+                                }
+                            },
+                            secondaryButton: .cancel(Text("Ні"))
+                        )
+                    }
                 }
+                .cornerRadius(20)
+                .shadow(radius: 10)
+                .padding(.horizontal)
+                .padding(.bottom)
+                .padding(.top, 5)
             }
-            .cornerRadius(20)
-            .shadow(radius: 10)
-            .padding()
             
         }
     }

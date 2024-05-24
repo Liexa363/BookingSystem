@@ -23,6 +23,8 @@ struct ContentView: View {
     
     @State private var serviceStation: ServiceStation? = nil
     
+    @State private var selectedServiceStation: ServiceStation? = nil
+    
     var body: some View {
         VStack {
             
@@ -40,9 +42,9 @@ struct ContentView: View {
                 case .signIn:
                     SignInView(selectedTab: $selectedTab, user: $user)
                 case .clientHome:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
                 case .clientBookingList:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
                 case .aboutMe:
                     switch user!.role {
                     case "Manager":
@@ -52,10 +54,10 @@ struct ContentView: View {
                     case "Administrator":
                         AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                     default:
-                        ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
+                        ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
                     }
                 case .clientCar:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
                 case .masterBookingList:
                     MasterHomeView(selectedTab: $selectedTab, user: $user)
                 case .managerBookingList:
@@ -82,6 +84,10 @@ struct ContentView: View {
                     AddServiceStationView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
                 case .editServiceStation:
                     EditServiceStationView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
+                case .clientAboutServiceStation:
+                    AboutServiceStationView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
+                case .clientBooking:
+                    ClientBookingView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
                 }
                 
             } else {

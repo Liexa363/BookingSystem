@@ -14,7 +14,7 @@ struct ServiceStation {
     var location: Location = Location(country: "", city: "", street: "", houseNumber: "")
     var services: [Service] = [Service(name: "", serviceDescription: "", price: "")]
     var managerID: String = ""
-    var workSchedule: [WorkSchedule] = [WorkSchedule(day: "", startTime: "", endTime: "")]
+    var workSchedule: [WorkSchedule] = [WorkSchedule(day: "", startTime: "", endTime: "", interval: "")]
     
     init(id: String, name: String, location: Location, services: [Service], managerID: String, workSchedule: [WorkSchedule]) {
         self.id = id

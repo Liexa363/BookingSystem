@@ -12,11 +12,13 @@ struct ClientHomeView: View {
     @Binding private var selectedTab: Pages
     @Binding private var user: User?
     @Binding private var car: Car?
+    @Binding private var selectedServiceStation: ServiceStation?
     
-    init(selectedTab: Binding<Pages>, user: Binding<User?>, car: Binding<Car?>) {
+    init(selectedTab: Binding<Pages>, user: Binding<User?>, car: Binding<Car?>, selectedServiceStation: Binding<ServiceStation?>) {
         self._selectedTab = selectedTab
         self._user = user
         self._car = car
+        self._selectedServiceStation = selectedServiceStation
     }
     
     let clientTabItems = [
@@ -31,7 +33,7 @@ struct ClientHomeView: View {
             
             switch selectedTab {
             case .clientHome:
-                ClientServiceStationsView(selectedTab: $selectedTab, user: $user)
+                ClientServiceStationsView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
             case .clientCar:
                 ClientCarView(selectedTab: $selectedTab, user: $user, car: $car)
             case .clientBookingList:
@@ -53,5 +55,5 @@ struct ClientHomeView: View {
 }
 
 #Preview {
-    ClientHomeView(selectedTab: .constant(.clientHome), user: .constant(nil), car: .constant(nil))
+    ClientHomeView(selectedTab: .constant(.clientHome), user: .constant(nil), car: .constant(nil), selectedServiceStation: .constant(nil))
 }

@@ -22,7 +22,7 @@ struct ServiceStationListView: View {
     @EnvironmentObject var realmManager: RealmManager
     
     @State private var isDelete = false
-    @State private var serviceStationForDelete = ServiceStation(id: "", name: "", location: Location(country: "", city: "", street: "", houseNumber: ""), services: [Service(name: "", serviceDescription: "", price: "")], managerID: "", workSchedule: [WorkSchedule(day: "", startTime: "", endTime: "")])
+    @State private var serviceStationForDelete = ServiceStation(id: "", name: "", location: Location(country: "", city: "", street: "", houseNumber: ""), services: [Service(name: "", serviceDescription: "", price: "")], managerID: "", workSchedule: [WorkSchedule(day: "", startTime: "", endTime: "", interval: "")])
     
     var body: some View {
         ZStack {

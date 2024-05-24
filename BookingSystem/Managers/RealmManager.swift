@@ -338,7 +338,8 @@ class RealmManager: ObservableObject {
                 return WorkSchedule(
                     day: realmWorkSchedule.day,
                     startTime: realmWorkSchedule.startTime,
-                    endTime: realmWorkSchedule.endTime
+                    endTime: realmWorkSchedule.endTime,
+                    interval: realmWorkSchedule.interval
                 )
             })
             
@@ -420,6 +421,7 @@ class RealmManager: ObservableObject {
             tempWorkSchedule.day = service.day
             tempWorkSchedule.startTime = service.startTime
             tempWorkSchedule.endTime = service.endTime
+            tempWorkSchedule.interval = service.interval
             
             serviceStation.workSchedule.append(tempWorkSchedule)
         }
@@ -461,7 +463,8 @@ class RealmManager: ObservableObject {
                 WorkSchedule(
                     day: realmWorkSchedule.day,
                     startTime: realmWorkSchedule.startTime,
-                    endTime: realmWorkSchedule.endTime
+                    endTime: realmWorkSchedule.endTime,
+                    interval: realmWorkSchedule.interval
                 )
             })
             
@@ -531,6 +534,31 @@ class RealmManager: ObservableObject {
             print("No car found for owner ID: \(managerID)")
             return nil
         }
+    }
+    
+    func addBooking(booking: RealmBookingList) -> Bool {
+        do {
+            try realm.write {
+                realm.add(booking)
+            }
+            return true
+        } catch {
+            print("Error saving booking to Realm: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    func getBookedTimes(for date: String, serviceStationID: String) -> [String] {
+        let realm = try! Realm()  // Initializing Realm can throw, so we use try!
+        let bookings = realm.objects(RealmBookingList.self)
+            .filter("date == %@ AND serviceStationID == %@", date, serviceStationID)
+        
+        var bookedTimes: [String] = []
+        for booking in bookings {
+            // Add the whole time slot to the array
+            bookedTimes.append(booking.time)
+        }
+        return bookedTimes
     }
     
     

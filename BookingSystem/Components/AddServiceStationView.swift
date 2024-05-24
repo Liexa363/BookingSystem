@@ -26,13 +26,13 @@ struct AddServiceStationView: View {
     @State private var houseNumber: String = ""
     @State private var services: [Service] = [Service(name: "", serviceDescription: "", price: "")]
     @State private var managerID: String = ""
-    @State private var monday: WorkSchedule =  WorkSchedule(day: "monday", startTime: "", endTime: "")
-    @State private var tuesday: WorkSchedule =  WorkSchedule(day: "tuesday", startTime: "", endTime: "")
-    @State private var wednesday: WorkSchedule =  WorkSchedule(day: "wednesday", startTime: "", endTime: "")
-    @State private var thursday: WorkSchedule =  WorkSchedule(day: "thursday", startTime: "", endTime: "")
-    @State private var friday: WorkSchedule =  WorkSchedule(day: "friday", startTime: "", endTime: "")
-    @State private var saturday: WorkSchedule =  WorkSchedule(day: "saturday", startTime: "", endTime: "")
-    @State private var sunday: WorkSchedule =  WorkSchedule(day: "sunday", startTime: "", endTime: "")
+    @State private var monday: WorkSchedule =  WorkSchedule(day: "monday", startTime: "", endTime: "", interval: "")
+    @State private var tuesday: WorkSchedule =  WorkSchedule(day: "tuesday", startTime: "", endTime: "", interval: "")
+    @State private var wednesday: WorkSchedule =  WorkSchedule(day: "wednesday", startTime: "", endTime: "", interval: "")
+    @State private var thursday: WorkSchedule =  WorkSchedule(day: "thursday", startTime: "", endTime: "", interval: "")
+    @State private var friday: WorkSchedule =  WorkSchedule(day: "friday", startTime: "", endTime: "", interval: "")
+    @State private var saturday: WorkSchedule =  WorkSchedule(day: "saturday", startTime: "", endTime: "", interval: "")
+    @State private var sunday: WorkSchedule =  WorkSchedule(day: "sunday", startTime: "", endTime: "", interval: "")
     
     @State private var empty: String = ""
     
@@ -146,6 +146,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $monday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $monday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $monday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -162,6 +163,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $tuesday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $tuesday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $tuesday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -178,6 +180,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $wednesday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $wednesday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $wednesday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -194,6 +197,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $thursday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $thursday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $thursday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -210,6 +214,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $friday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $friday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $friday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -226,6 +231,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $saturday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $saturday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $saturday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -242,6 +248,7 @@ struct AddServiceStationView: View {
                                 VStack(alignment: .leading) {
                                     CustomTextField(placeholder: "Година початку роботи", input: $sunday.startTime)
                                     CustomTextField(placeholder: "Година закінчення роботи", input: $sunday.endTime)
+                                    CustomTextField(placeholder: "Інтервал (у хвилинах)", input: $sunday.interval)
                                 }
                                 .padding(.vertical, 5)
                             }
@@ -323,7 +330,7 @@ struct AddServiceStationView: View {
                 Button(action: {
                     withAnimation {
                         
-                        if name.isEmpty || country.isEmpty || city.isEmpty || street.isEmpty || houseNumber.isEmpty || viewModel.services[0].name.isEmpty || viewModel.services[0].serviceDescription.isEmpty || viewModel.services[0].price.isEmpty || monday.startTime.isEmpty || monday.endTime.isEmpty || tuesday.startTime.isEmpty || tuesday.endTime.isEmpty || wednesday.startTime.isEmpty || wednesday.endTime.isEmpty || thursday.startTime.isEmpty || thursday.endTime.isEmpty || friday.startTime.isEmpty || friday.endTime.isEmpty || saturday.startTime.isEmpty || saturday.endTime.isEmpty || sunday.startTime.isEmpty || sunday.endTime.isEmpty {
+                        if name.isEmpty || country.isEmpty || city.isEmpty || street.isEmpty || houseNumber.isEmpty || viewModel.services[0].name.isEmpty || viewModel.services[0].serviceDescription.isEmpty || viewModel.services[0].price.isEmpty || monday.startTime.isEmpty || monday.endTime.isEmpty || tuesday.startTime.isEmpty || tuesday.endTime.isEmpty || wednesday.startTime.isEmpty || wednesday.endTime.isEmpty || thursday.startTime.isEmpty || thursday.endTime.isEmpty || friday.startTime.isEmpty || friday.endTime.isEmpty || saturday.startTime.isEmpty || saturday.endTime.isEmpty || sunday.startTime.isEmpty || sunday.endTime.isEmpty || monday.interval.isEmpty || tuesday.interval.isEmpty || wednesday.interval.isEmpty || thursday.interval.isEmpty || friday.interval.isEmpty || saturday.interval.isEmpty || sunday.interval.isEmpty {
                             
                             isSomeFieldIsEmpty = true
                             
@@ -349,36 +356,43 @@ struct AddServiceStationView: View {
                             tempMonday.day = monday.day
                             tempMonday.startTime = monday.startTime
                             tempMonday.endTime = monday.endTime
+                            tempMonday.interval = monday.interval
                             
                             let tempTuesday = RealmWorkSchedule()
                             tempTuesday.day = tuesday.day
                             tempTuesday.startTime = tuesday.startTime
                             tempTuesday.endTime = tuesday.endTime
+                            tempTuesday.interval = tuesday.interval
                             
                             let tempWendesday = RealmWorkSchedule()
                             tempWendesday.day = wednesday.day
                             tempWendesday.startTime = wednesday.startTime
                             tempWendesday.endTime = wednesday.endTime
+                            tempWendesday.interval = wednesday.interval
                             
                             let tempThursday = RealmWorkSchedule()
                             tempThursday.day = thursday.day
                             tempThursday.startTime = thursday.startTime
                             tempThursday.endTime = thursday.endTime
+                            tempThursday.interval = thursday.interval
                             
                             let tempFriday = RealmWorkSchedule()
                             tempFriday.day = friday.day
                             tempFriday.startTime = friday.startTime
                             tempFriday.endTime = friday.endTime
+                            tempFriday.interval = friday.interval
                             
                             let tempSaturday = RealmWorkSchedule()
                             tempSaturday.day = saturday.day
                             tempSaturday.startTime = saturday.startTime
                             tempSaturday.endTime = saturday.endTime
+                            tempSaturday.interval = saturday.interval
                             
                             let tempSunday = RealmWorkSchedule()
                             tempSunday.day = sunday.day
                             tempSunday.startTime = sunday.startTime
                             tempSunday.endTime = sunday.endTime
+                            tempSunday.interval = sunday.interval
                             
                             tempServiceStation.workSchedule.append(tempMonday)
                             tempServiceStation.workSchedule.append(tempTuesday)

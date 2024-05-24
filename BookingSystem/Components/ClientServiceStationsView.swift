@@ -11,10 +11,12 @@ struct ClientServiceStationsView: View {
     
     @Binding private var selectedTab: Pages
     @Binding private var user: User?
+    @Binding private var selectedServiceStation: ServiceStation?
     
-    init(selectedTab: Binding<Pages>, user: Binding<User?>) {
+    init(selectedTab: Binding<Pages>, user: Binding<User?>, selectedServiceStation: Binding<ServiceStation?>) {
         self._selectedTab = selectedTab
         self._user = user
+        self._selectedServiceStation = selectedServiceStation
     }
     
     @State private var serviceStations: [ServiceStation] = Array()
@@ -44,7 +46,17 @@ struct ClientServiceStationsView: View {
                         ScrollView {
                             LazyVGrid(columns: [GridItem(.flexible())]) {
                                 ForEach(0..<serviceStations.count, id: \.self) { index in
-                                    ClientServiceStationRow(serviceStation: serviceStations[index])
+                                    
+                                    Button(action: {
+                                        
+                                        selectedServiceStation = serviceStations[index]
+                                        selectedTab = .clientAboutServiceStation
+                                        
+                                        print("index: \(index)")
+                                    }) {
+                                        ClientServiceStationRow(serviceStation: serviceStations[index])
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                     
                                     Divider().padding(.horizontal)
                                 }
@@ -88,6 +100,7 @@ struct ClientServiceStationRow: View {
                     HStack {
                         Text(serviceStation.name)
                             .font(.title3)
+                            .foregroundColor(.black)
                     }
                     
                     Spacer()
@@ -123,5 +136,5 @@ struct ClientServiceStationRow: View {
 }
 
 #Preview {
-    ClientServiceStationsView(selectedTab: .constant(.clientHome), user: .constant(nil))
+    ClientServiceStationsView(selectedTab: .constant(.clientHome), user: .constant(nil), selectedServiceStation: .constant(nil))
 }

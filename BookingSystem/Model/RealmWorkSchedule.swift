@@ -12,5 +12,6 @@ class RealmWorkSchedule: Object {
     @Persisted var day: String = ""
     @Persisted var startTime: String = ""
     @Persisted var endTime: String = ""
+    @Persisted var interval: String = ""
 }
 

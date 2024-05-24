@@ -11,5 +11,6 @@ struct WorkSchedule {
     var day: String
     var startTime: String
     var endTime: String
+    var interval: String
 }
 

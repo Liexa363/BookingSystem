@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct BookingList {
+struct Booking {
+    var id: String
     var date: String
     var time: String
     var serviceStation: ServiceStation

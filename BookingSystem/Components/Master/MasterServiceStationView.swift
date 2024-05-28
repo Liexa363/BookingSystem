@@ -1,13 +1,13 @@
 //
-//  ManagerServiceView.swift
+//  MasterServiceStation.swift
 //  BookingSystem
 //
-//  Created by Liexa MacBook Pro on 21.05.2024.
+//  Created by Liexa MacBook Pro on 28.05.2024.
 //
 
 import SwiftUI
 
-struct ManagerServiceStationView: View {
+struct MasterServiceStationView: View {
     
     @Binding private var selectedTab: Pages
     @Binding private var user: User?
@@ -31,8 +31,6 @@ struct ManagerServiceStationView: View {
             
             VStack {
                 HStack {
-                    Text("fff")
-                        .foregroundStyle(Color("backgroundColor"))
                     
                     Spacer()
                     
@@ -41,55 +39,36 @@ struct ManagerServiceStationView: View {
                     
                     Spacer()
                     
+                }
+                .onAppear {
                     
-                    if realmManager.isServiceStationExists(forManagerID: user!.id) {
-                        Button(action: {
+                    isServiceStationDataLoaded = false
+                    
+                    DispatchQueue.main.async {
+                        
+                        if let serviceStationID = realmManager.getServiceStationID(byMasterEmail: user!.email) {
                             
-                            withAnimation {
-                                
-                                selectedTab = .editServiceStation
-                                
-                            }
+                            serviceStation = realmManager.getServiceStation(byID: serviceStationID)
                             
-                        }) {
-                            Image(systemName: "pencil")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(.black)
-                                .shadow(radius: 10)
                         }
-                    } else {
-                        Button(action: {
-                            
-                            withAnimation {
-                                
-                                selectedTab = .addServiceStation
-                                
-                            }
-                            
-                        }) {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(.black)
-                                .shadow(radius: 10)
-                        }
+                        
+                        isServiceStationDataLoaded = true
+                        
                     }
+                    
                 }
                 .padding(.horizontal)
-                
-                Spacer()
                 
                 ZStack {
                     
                     Color.white
                     
-                    if realmManager.isServiceStationExists(forManagerID: user!.id) {
+                    if serviceStation != nil && serviceStation?.name != "" {
                         ScrollView {
                             
                             if isServiceStationDataLoaded {
                                 
-                                 VStack {
+                                VStack {
                                     
                                     HStack {
                                         Text("Назва")
@@ -319,97 +298,23 @@ struct ManagerServiceStationView: View {
                         }
                     } else {
                         
-                        Text("Сервіс не доданий")
+                        Text("Ви не додані до сервісу")
                             .font(.title3)
                             .foregroundStyle(.secondary)
                         
                     }
-                }
-                .onAppear {
                     
-                    isServiceStationDataLoaded = false
-                    
-                    DispatchQueue.main.async {
-                        
-                        if let tempServiceStation = realmManager.getServiceStation(byManagerID: user!.id) {
-                            
-                            serviceStation = tempServiceStation
-                            
-                            isServiceStationDataLoaded = true
-                        }
-                        
-                    }
                 }
                 .cornerRadius(20)
                 .shadow(radius: 10)
-                .padding(.vertical)
-                .padding()
-            }
-        }
-    }
-}
-
-struct ServiceView: View {
-    var service: Service
-
-    var body: some View {
-        VStack {
-            VStack {
-                HStack {
-                    Text("Назва:")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                }
-                
-                HStack {
-                    Text(service.name)
-                        .font(.body)
-                    
-                    Spacer()
-                }
-            }
-            .padding(.bottom, 5)
-            
-            VStack {
-                HStack {
-                    Text("Опис:")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                }
-                
-                HStack {
-                    Text(service.serviceDescription)
-                        .font(.body)
-                    
-                    Spacer()
-                }
-            }
-            .padding(.bottom, 5)
-            
-            VStack {
-                HStack {
-                    Text("Ціна:")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                }
-                
-                HStack {
-                    Text("\(service.price) грн")
-                        .font(.body)
-                    
-                    Spacer()
-                }
+                .padding(.horizontal)
+                .padding(.bottom)
+                .padding(.top, 5)
             }
         }
     }
 }
 
 #Preview {
-    ManagerServiceStationView(selectedTab: .constant(.aboutService), user: .constant(nil), serviceStation: .constant(nil))
+    MasterServiceStationView(selectedTab: .constant(.masterServiceStation), user: .constant(nil), serviceStation: .constant(nil))
 }

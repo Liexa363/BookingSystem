@@ -11,6 +11,7 @@ struct CustomTabBar: View {
     
     @Binding var selectedTab: Pages
     let tabItems: [TabItem]
+    let titleSize: Int
     
     var body: some View {
         HStack {
@@ -23,7 +24,7 @@ struct CustomTabBar: View {
                     isSelected: tabItems[index].tab == selectedTab,
                     onTap: {
                         selectedTab = tabItems[index].tab
-                    }
+                    }, titleSize: titleSize
                 )
                 Spacer()
             }
@@ -42,6 +43,7 @@ struct TabBarItem: View {
     let item: TabItem
     let isSelected: Bool
     let onTap: () -> Void
+    let titleSize: Int
     
     var body: some View {
         Button(action: onTap) {
@@ -51,7 +53,7 @@ struct TabBarItem: View {
                     .foregroundColor(isSelected ? .blackWhite : .gray)
                 
                 Text(item.title)
-                    .font(.system(size: 14))
+                    .font(.system(size: CGFloat(titleSize)))
                     .foregroundColor(isSelected ? .blackWhite : .gray)
             }
             .padding(.vertical, 8)

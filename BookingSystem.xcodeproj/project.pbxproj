@@ -7,11 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0339572C038F9000CDAE0E /* IndexedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0339562C038F9000CDAE0E /* IndexedService.swift */; };
+		FA03395A2C0490C400CDAE0E /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0339592C0490C400CDAE0E /* Feedback.swift */; };
+		FA03395C2C0490CF00CDAE0E /* RealmFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03395B2C0490CF00CDAE0E /* RealmFeedback.swift */; };
+		FA03395E2C04ADED00CDAE0E /* ClientFeedbackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03395D2C04ADED00CDAE0E /* ClientFeedbackListView.swift */; };
+		FA0339602C04B03400CDAE0E /* ClientAddFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03395F2C04B03400CDAE0E /* ClientAddFeedbackView.swift */; };
+		FA0339622C04B0F800CDAE0E /* CustomMultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0339612C04B0F800CDAE0E /* CustomMultilineTextField.swift */; };
+		FA0339642C05CEF200CDAE0E /* ManagerFeedbackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0339632C05CEF200CDAE0E /* ManagerFeedbackListView.swift */; };
+		FA0339672C063CE400CDAE0E /* MastersInServiceStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0339662C063CE400CDAE0E /* MastersInServiceStation.swift */; };
+		FA0339692C063CF000CDAE0E /* RealmMastersInServiceStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0339682C063CF000CDAE0E /* RealmMastersInServiceStation.swift */; };
+		FA03396B2C064D5F00CDAE0E /* MasterServiceStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03396A2C064D5F00CDAE0E /* MasterServiceStationView.swift */; };
+		FA03396D2C064D7F00CDAE0E /* MasterBookingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03396C2C064D7F00CDAE0E /* MasterBookingListView.swift */; };
+		FA03396F2C06570E00CDAE0E /* MasterAboutBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA03396E2C06570E00CDAE0E /* MasterAboutBookingView.swift */; };
 		FA05B0972BFE690900F4F939 /* ServiceStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */; };
 		FA05B0992BFE923300F4F939 /* ClientServiceStationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */; };
 		FA1C08E22BFF978B0089B492 /* AboutServiceStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C08E12BFF978B0089B492 /* AboutServiceStationView.swift */; };
 		FA1C08E42BFFBB920089B492 /* ClientBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C08E32BFFBB920089B492 /* ClientBookingView.swift */; };
-		FA1C08E82C012D160089B492 /* RealmBookingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C08E72C012D160089B492 /* RealmBookingList.swift */; };
+		FA1C08E82C012D160089B492 /* RealmBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C08E72C012D160089B492 /* RealmBooking.swift */; };
 		FA2268892BDE62E100D8731A /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2268882BDE62E100D8731A /* UserListView.swift */; };
 		FA22688D2BDEB78100D8731A /* RealmCar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688C2BDEB78100D8731A /* RealmCar.swift */; };
 		FA22688F2BDEC38200D8731A /* ClientCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22688E2BDEC38200D8731A /* ClientCarView.swift */; };
@@ -26,6 +38,11 @@
 		FA308D792BFCE893006A94C6 /* AddServiceStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA308D782BFCE893006A94C6 /* AddServiceStationView.swift */; };
 		FA308D7B2BFCE8AC006A94C6 /* EditServiceStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA308D7A2BFCE8AC006A94C6 /* EditServiceStationView.swift */; };
 		FA308D7D2BFCFEE8006A94C6 /* ServiceStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA308D7C2BFCFEE8006A94C6 /* ServiceStationViewModel.swift */; };
+		FA543BBD2C025ACF000ED3C7 /* BookingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA543BBC2C025ACF000ED3C7 /* BookingListView.swift */; };
+		FA543BCD2C029A29000ED3C7 /* ManagerBookingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA543BCC2C029A29000ED3C7 /* ManagerBookingListView.swift */; };
+		FA543BCF2C029EA5000ED3C7 /* ManagerAboutBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA543BCE2C029EA5000ED3C7 /* ManagerAboutBookingView.swift */; };
+		FA543BD12C02AA13000ED3C7 /* ClientBookingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA543BD02C02AA13000ED3C7 /* ClientBookingListView.swift */; };
+		FA543BD32C02AD9A000ED3C7 /* ClientAboutBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA543BD22C02AD9A000ED3C7 /* ClientAboutBookingView.swift */; };
 		FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB76A2BDA582500B702AB /* RealmManager.swift */; };
 		FA5FB77E2BDA87A200B702AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB77D2BDA87A200B702AB /* User.swift */; };
 		FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FB7832BDACDCB00B702AB /* Credentials.swift */; };
@@ -48,7 +65,7 @@
 		FAC99D942BD809EF00FA3C82 /* ServiceStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D932BD809EF00FA3C82 /* ServiceStation.swift */; };
 		FAC99D962BD80B4600FA3C82 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D952BD80B4600FA3C82 /* Location.swift */; };
 		FAC99D982BD80CFB00FA3C82 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D972BD80CFB00FA3C82 /* Service.swift */; };
-		FAC99D9A2BD8240800FA3C82 /* BookingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D992BD8240800FA3C82 /* BookingList.swift */; };
+		FAC99D9A2BD8240800FA3C82 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D992BD8240800FA3C82 /* Booking.swift */; };
 		FAC99D9C2BD8248300FA3C82 /* WorkSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D9B2BD8248300FA3C82 /* WorkSchedule.swift */; };
 		FAC99DA02BD825CD00FA3C82 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99D9F2BD825CD00FA3C82 /* GetStartedView.swift */; };
 		FAC99DA22BD835CC00FA3C82 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC99DA12BD835CC00FA3C82 /* InformationView.swift */; };
@@ -61,11 +78,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA0339562C038F9000CDAE0E /* IndexedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedService.swift; sourceTree = "<group>"; };
+		FA0339592C0490C400CDAE0E /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		FA03395B2C0490CF00CDAE0E /* RealmFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedback.swift; sourceTree = "<group>"; };
+		FA03395D2C04ADED00CDAE0E /* ClientFeedbackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientFeedbackListView.swift; sourceTree = "<group>"; };
+		FA03395F2C04B03400CDAE0E /* ClientAddFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAddFeedbackView.swift; sourceTree = "<group>"; };
+		FA0339612C04B0F800CDAE0E /* CustomMultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMultilineTextField.swift; sourceTree = "<group>"; };
+		FA0339632C05CEF200CDAE0E /* ManagerFeedbackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerFeedbackListView.swift; sourceTree = "<group>"; };
+		FA0339662C063CE400CDAE0E /* MastersInServiceStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastersInServiceStation.swift; sourceTree = "<group>"; };
+		FA0339682C063CF000CDAE0E /* RealmMastersInServiceStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMastersInServiceStation.swift; sourceTree = "<group>"; };
+		FA03396A2C064D5F00CDAE0E /* MasterServiceStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterServiceStationView.swift; sourceTree = "<group>"; };
+		FA03396C2C064D7F00CDAE0E /* MasterBookingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterBookingListView.swift; sourceTree = "<group>"; };
+		FA03396E2C06570E00CDAE0E /* MasterAboutBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterAboutBookingView.swift; sourceTree = "<group>"; };
 		FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStationListView.swift; sourceTree = "<group>"; };
 		FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceStationsView.swift; sourceTree = "<group>"; };
 		FA1C08E12BFF978B0089B492 /* AboutServiceStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutServiceStationView.swift; sourceTree = "<group>"; };
 		FA1C08E32BFFBB920089B492 /* ClientBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingView.swift; sourceTree = "<group>"; };
-		FA1C08E72C012D160089B492 /* RealmBookingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBookingList.swift; sourceTree = "<group>"; };
+		FA1C08E72C012D160089B492 /* RealmBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBooking.swift; sourceTree = "<group>"; };
 		FA2268882BDE62E100D8731A /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		FA22688C2BDEB78100D8731A /* RealmCar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCar.swift; sourceTree = "<group>"; };
 		FA22688E2BDEC38200D8731A /* ClientCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCarView.swift; sourceTree = "<group>"; };
@@ -80,6 +109,11 @@
 		FA308D782BFCE893006A94C6 /* AddServiceStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddServiceStationView.swift; sourceTree = "<group>"; };
 		FA308D7A2BFCE8AC006A94C6 /* EditServiceStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditServiceStationView.swift; sourceTree = "<group>"; };
 		FA308D7C2BFCFEE8006A94C6 /* ServiceStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStationViewModel.swift; sourceTree = "<group>"; };
+		FA543BBC2C025ACF000ED3C7 /* BookingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListView.swift; sourceTree = "<group>"; };
+		FA543BCC2C029A29000ED3C7 /* ManagerBookingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerBookingListView.swift; sourceTree = "<group>"; };
+		FA543BCE2C029EA5000ED3C7 /* ManagerAboutBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerAboutBookingView.swift; sourceTree = "<group>"; };
+		FA543BD02C02AA13000ED3C7 /* ClientBookingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingListView.swift; sourceTree = "<group>"; };
+		FA543BD22C02AD9A000ED3C7 /* ClientAboutBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAboutBookingView.swift; sourceTree = "<group>"; };
 		FA5FB76A2BDA582500B702AB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FA5FB77D2BDA87A200B702AB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA5FB7832BDACDCB00B702AB /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -101,7 +135,7 @@
 		FAC99D932BD809EF00FA3C82 /* ServiceStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStation.swift; sourceTree = "<group>"; };
 		FAC99D952BD80B4600FA3C82 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		FAC99D972BD80CFB00FA3C82 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		FAC99D992BD8240800FA3C82 /* BookingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingList.swift; sourceTree = "<group>"; };
+		FAC99D992BD8240800FA3C82 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		FAC99D9B2BD8248300FA3C82 /* WorkSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSchedule.swift; sourceTree = "<group>"; };
 		FAC99D9F2BD825CD00FA3C82 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		FAC99DA12BD835CC00FA3C82 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
@@ -126,6 +160,168 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA0339582C04909400CDAE0E /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				FA0339592C0490C400CDAE0E /* Feedback.swift */,
+				FA03395B2C0490CF00CDAE0E /* RealmFeedback.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		FA0339652C063CB400CDAE0E /* Masters */ = {
+			isa = PBXGroup;
+			children = (
+				FA0339662C063CE400CDAE0E /* MastersInServiceStation.swift */,
+				FA0339682C063CF000CDAE0E /* RealmMastersInServiceStation.swift */,
+			);
+			path = Masters;
+			sourceTree = "<group>";
+		};
+		FA543BBE2C025BE8000ED3C7 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */,
+				FA1C08E12BFF978B0089B492 /* AboutServiceStationView.swift */,
+				FA1C08E32BFFBB920089B492 /* ClientBookingView.swift */,
+				FA22688E2BDEC38200D8731A /* ClientCarView.swift */,
+				FA2268902BDF849200D8731A /* AddCarView.swift */,
+				FA2268922BDF84D400D8731A /* EditCarView.swift */,
+				FA543BD02C02AA13000ED3C7 /* ClientBookingListView.swift */,
+				FA543BD22C02AD9A000ED3C7 /* ClientAboutBookingView.swift */,
+				FA03395D2C04ADED00CDAE0E /* ClientFeedbackListView.swift */,
+				FA03395F2C04B03400CDAE0E /* ClientAddFeedbackView.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		FA543BBF2C025BF4000ED3C7 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FA543BCC2C029A29000ED3C7 /* ManagerBookingListView.swift */,
+				FA543BCE2C029EA5000ED3C7 /* ManagerAboutBookingView.swift */,
+				FA308D6E2BFCD03B006A94C6 /* ManagerServiceStationView.swift */,
+				FA308D782BFCE893006A94C6 /* AddServiceStationView.swift */,
+				FA308D7A2BFCE8AC006A94C6 /* EditServiceStationView.swift */,
+				FA0339632C05CEF200CDAE0E /* ManagerFeedbackListView.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		FA543BC02C025BFD000ED3C7 /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				FA03396C2C064D7F00CDAE0E /* MasterBookingListView.swift */,
+				FA03396E2C06570E00CDAE0E /* MasterAboutBookingView.swift */,
+				FA03396A2C064D5F00CDAE0E /* MasterServiceStationView.swift */,
+			);
+			path = Master;
+			sourceTree = "<group>";
+		};
+		FA543BC12C025C03000ED3C7 /* Administrator */ = {
+			isa = PBXGroup;
+			children = (
+				FA2268882BDE62E100D8731A /* UserListView.swift */,
+				FA2268942BE00D2C00D8731A /* CarListView.swift */,
+				FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */,
+				FA543BBC2C025ACF000ED3C7 /* BookingListView.swift */,
+			);
+			path = Administrator;
+			sourceTree = "<group>";
+		};
+		FA543BC22C025D41000ED3C7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FB7862BDB9AC400B702AB /* CustomTabBar.swift */,
+				FAB3B9542BDC08AF00820E9B /* AboutMeView.swift */,
+				FAB3B9582BDDA2C900820E9B /* EditProfileView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FA543BC32C025D5C000ED3C7 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99DB42BD9BE0B00FA3C82 /* CustomTextField.swift */,
+				FAC99DB62BD9BE6700FA3C82 /* CustomSecureField.swift */,
+				FA0339612C04B0F800CDAE0E /* CustomMultilineTextField.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		FA543BC42C025DBD000ED3C7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FB77D2BDA87A200B702AB /* User.swift */,
+				FAC99D8F2BD8073B00FA3C82 /* RealmUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		FA543BC52C025DC5000ED3C7 /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99D912BD807CF00FA3C82 /* Car.swift */,
+				FA22688C2BDEB78100D8731A /* RealmCar.swift */,
+			);
+			path = Car;
+			sourceTree = "<group>";
+		};
+		FA543BC62C025DCA000ED3C7 /* ServiceStation */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99D932BD809EF00FA3C82 /* ServiceStation.swift */,
+				FA308D702BFCD144006A94C6 /* RealmServiceStation.swift */,
+				FA308D7C2BFCFEE8006A94C6 /* ServiceStationViewModel.swift */,
+			);
+			path = ServiceStation;
+			sourceTree = "<group>";
+		};
+		FA543BC72C025DD5000ED3C7 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99D952BD80B4600FA3C82 /* Location.swift */,
+				FA308D722BFCDBA5006A94C6 /* RealmLocation.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		FA543BC82C025DDF000ED3C7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99D972BD80CFB00FA3C82 /* Service.swift */,
+				FA308D742BFCDC48006A94C6 /* RealmService.swift */,
+				FA0339562C038F9000CDAE0E /* IndexedService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FA543BC92C025DE6000ED3C7 /* BookingList */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99D992BD8240800FA3C82 /* Booking.swift */,
+				FA1C08E72C012D160089B492 /* RealmBooking.swift */,
+			);
+			path = BookingList;
+			sourceTree = "<group>";
+		};
+		FA543BCA2C025DEF000ED3C7 /* WorkSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				FAC99D9B2BD8248300FA3C82 /* WorkSchedule.swift */,
+				FA308D762BFCDD12006A94C6 /* RealmWorkSchedule.swift */,
+			);
+			path = WorkSchedule;
+			sourceTree = "<group>";
+		};
+		FA543BCB2C025E02000ED3C7 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FB7832BDACDCB00B702AB /* Credentials.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		FA5FB7692BDA580900B702AB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,23 +333,12 @@
 		FA5FB7852BDB9A8100B702AB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				FAC99DB62BD9BE6700FA3C82 /* CustomSecureField.swift */,
-				FAC99DB42BD9BE0B00FA3C82 /* CustomTextField.swift */,
-				FA5FB7862BDB9AC400B702AB /* CustomTabBar.swift */,
-				FAB3B9542BDC08AF00820E9B /* AboutMeView.swift */,
-				FAB3B9582BDDA2C900820E9B /* EditProfileView.swift */,
-				FA2268882BDE62E100D8731A /* UserListView.swift */,
-				FA22688E2BDEC38200D8731A /* ClientCarView.swift */,
-				FA2268902BDF849200D8731A /* AddCarView.swift */,
-				FA2268922BDF84D400D8731A /* EditCarView.swift */,
-				FA2268942BE00D2C00D8731A /* CarListView.swift */,
-				FA308D6E2BFCD03B006A94C6 /* ManagerServiceStationView.swift */,
-				FA308D782BFCE893006A94C6 /* AddServiceStationView.swift */,
-				FA308D7A2BFCE8AC006A94C6 /* EditServiceStationView.swift */,
-				FA05B0962BFE690900F4F939 /* ServiceStationListView.swift */,
-				FA05B0982BFE923300F4F939 /* ClientServiceStationsView.swift */,
-				FA1C08E12BFF978B0089B492 /* AboutServiceStationView.swift */,
-				FA1C08E32BFFBB920089B492 /* ClientBookingView.swift */,
+				FA543BBE2C025BE8000ED3C7 /* Client */,
+				FA543BBF2C025BF4000ED3C7 /* Manager */,
+				FA543BC02C025BFD000ED3C7 /* Master */,
+				FA543BC12C025C03000ED3C7 /* Administrator */,
+				FA543BC22C025D41000ED3C7 /* Common */,
+				FA543BC32C025D5C000ED3C7 /* Other */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -201,22 +386,16 @@
 		FAC99D9D2BD8255200FA3C82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAC99D8F2BD8073B00FA3C82 /* RealmUser.swift */,
-				FA5FB77D2BDA87A200B702AB /* User.swift */,
-				FA22688C2BDEB78100D8731A /* RealmCar.swift */,
-				FAC99D912BD807CF00FA3C82 /* Car.swift */,
-				FA308D702BFCD144006A94C6 /* RealmServiceStation.swift */,
-				FAC99D932BD809EF00FA3C82 /* ServiceStation.swift */,
-				FA308D722BFCDBA5006A94C6 /* RealmLocation.swift */,
-				FAC99D952BD80B4600FA3C82 /* Location.swift */,
-				FA308D742BFCDC48006A94C6 /* RealmService.swift */,
-				FAC99D972BD80CFB00FA3C82 /* Service.swift */,
-				FA1C08E72C012D160089B492 /* RealmBookingList.swift */,
-				FAC99D992BD8240800FA3C82 /* BookingList.swift */,
-				FA308D762BFCDD12006A94C6 /* RealmWorkSchedule.swift */,
-				FAC99D9B2BD8248300FA3C82 /* WorkSchedule.swift */,
-				FA5FB7832BDACDCB00B702AB /* Credentials.swift */,
-				FA308D7C2BFCFEE8006A94C6 /* ServiceStationViewModel.swift */,
+				FA543BC42C025DBD000ED3C7 /* User */,
+				FA543BC52C025DC5000ED3C7 /* Car */,
+				FA543BC62C025DCA000ED3C7 /* ServiceStation */,
+				FA543BC72C025DD5000ED3C7 /* Location */,
+				FA543BC82C025DDF000ED3C7 /* Service */,
+				FA543BC92C025DE6000ED3C7 /* BookingList */,
+				FA543BCA2C025DEF000ED3C7 /* WorkSchedule */,
+				FA0339582C04909400CDAE0E /* Feedback */,
+				FA543BCB2C025E02000ED3C7 /* Other */,
+				FA0339652C063CB400CDAE0E /* Masters */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,12 +504,15 @@
 			files = (
 				FAC99DA22BD835CC00FA3C82 /* InformationView.swift in Sources */,
 				FAC99DAD2BD9A1AC00FA3C82 /* Pages.swift in Sources */,
+				FA03396F2C06570E00CDAE0E /* MasterAboutBookingView.swift in Sources */,
 				FA1C08E22BFF978B0089B492 /* AboutServiceStationView.swift in Sources */,
 				FAC99D842BD8037700FA3C82 /* ContentView.swift in Sources */,
 				FA2268952BE00D2C00D8731A /* CarListView.swift in Sources */,
 				FA2268932BDF84D400D8731A /* EditCarView.swift in Sources */,
+				FA543BBD2C025ACF000ED3C7 /* BookingListView.swift in Sources */,
 				FAB3B9572BDCF83F00820E9B /* ImagePicker.swift in Sources */,
-				FAC99D9A2BD8240800FA3C82 /* BookingList.swift in Sources */,
+				FAC99D9A2BD8240800FA3C82 /* Booking.swift in Sources */,
+				FA543BD32C02AD9A000ED3C7 /* ClientAboutBookingView.swift in Sources */,
 				FA2268912BDF849200D8731A /* AddCarView.swift in Sources */,
 				FA308D732BFCDBA5006A94C6 /* RealmLocation.swift in Sources */,
 				FAC99D982BD80CFB00FA3C82 /* Service.swift in Sources */,
@@ -340,33 +522,47 @@
 				FAC99D942BD809EF00FA3C82 /* ServiceStation.swift in Sources */,
 				FA308D7D2BFCFEE8006A94C6 /* ServiceStationViewModel.swift in Sources */,
 				FAC99DA02BD825CD00FA3C82 /* GetStartedView.swift in Sources */,
+				FA0339602C04B03400CDAE0E /* ClientAddFeedbackView.swift in Sources */,
 				FA5FB77E2BDA87A200B702AB /* User.swift in Sources */,
 				FAC99DB12BD9A35300FA3C82 /* SignInView.swift in Sources */,
 				FAC99DB52BD9BE0B00FA3C82 /* CustomTextField.swift in Sources */,
+				FA0339642C05CEF200CDAE0E /* ManagerFeedbackListView.swift in Sources */,
 				FAC99DAF2BD9A31C00FA3C82 /* SignUpView.swift in Sources */,
 				FA22688D2BDEB78100D8731A /* RealmCar.swift in Sources */,
+				FA543BCD2C029A29000ED3C7 /* ManagerBookingListView.swift in Sources */,
 				FAB3B9592BDDA2C900820E9B /* EditProfileView.swift in Sources */,
+				FA03395C2C0490CF00CDAE0E /* RealmFeedback.swift in Sources */,
 				FA1C08E42BFFBB920089B492 /* ClientBookingView.swift in Sources */,
 				FA05B0972BFE690900F4F939 /* ServiceStationListView.swift in Sources */,
 				FA5FB76B2BDA582500B702AB /* RealmManager.swift in Sources */,
 				FA308D792BFCE893006A94C6 /* AddServiceStationView.swift in Sources */,
-				FA1C08E82C012D160089B492 /* RealmBookingList.swift in Sources */,
+				FA1C08E82C012D160089B492 /* RealmBooking.swift in Sources */,
 				FA308D6F2BFCD03B006A94C6 /* ManagerServiceStationView.swift in Sources */,
+				FA543BD12C02AA13000ED3C7 /* ClientBookingListView.swift in Sources */,
 				FAC99DB72BD9BE6700FA3C82 /* CustomSecureField.swift in Sources */,
+				FA0339622C04B0F800CDAE0E /* CustomMultilineTextField.swift in Sources */,
 				FA5FB7872BDB9AC400B702AB /* CustomTabBar.swift in Sources */,
 				FA5FB7842BDACDCB00B702AB /* Credentials.swift in Sources */,
 				FA308D7B2BFCE8AC006A94C6 /* EditServiceStationView.swift in Sources */,
 				FA5FB78B2BDBAE2D00B702AB /* ManagerHomeView.swift in Sources */,
+				FA03395A2C0490C400CDAE0E /* Feedback.swift in Sources */,
 				FA22688F2BDEC38200D8731A /* ClientCarView.swift in Sources */,
+				FA03396B2C064D5F00CDAE0E /* MasterServiceStationView.swift in Sources */,
 				FAC99D9C2BD8248300FA3C82 /* WorkSchedule.swift in Sources */,
+				FA0339672C063CE400CDAE0E /* MastersInServiceStation.swift in Sources */,
 				FAC99D822BD8037700FA3C82 /* BookingSystemApp.swift in Sources */,
 				FA308D712BFCD144006A94C6 /* RealmServiceStation.swift in Sources */,
+				FA03396D2C064D7F00CDAE0E /* MasterBookingListView.swift in Sources */,
 				FA5FB78F2BDBAEDB00B702AB /* AdministratorHomeView.swift in Sources */,
 				FAC99D922BD807CF00FA3C82 /* Car.swift in Sources */,
 				FAC99D962BD80B4600FA3C82 /* Location.swift in Sources */,
+				FA0339572C038F9000CDAE0E /* IndexedService.swift in Sources */,
 				FA308D752BFCDC48006A94C6 /* RealmService.swift in Sources */,
 				FAC99D902BD8073B00FA3C82 /* RealmUser.swift in Sources */,
 				FAC99DAA2BD99D7C00FA3C82 /* SuggestSignInUpView.swift in Sources */,
+				FA0339692C063CF000CDAE0E /* RealmMastersInServiceStation.swift in Sources */,
+				FA03395E2C04ADED00CDAE0E /* ClientFeedbackListView.swift in Sources */,
+				FA543BCF2C029EA5000ED3C7 /* ManagerAboutBookingView.swift in Sources */,
 				FA2268892BDE62E100D8731A /* UserListView.swift in Sources */,
 				FA308D772BFCDD12006A94C6 /* RealmWorkSchedule.swift in Sources */,
 				FA5FB7892BDBA3DF00B702AB /* ClientHomeView.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  AddServiceStationView.swift
+//  EditServiceStationView.swift
 //  BookingSystem
 //
 //  Created by Liexa MacBook Pro on 21.05.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddServiceStationView: View {
+struct EditServiceStationView: View {
     
     @Binding private var selectedTab: Pages
     @Binding private var user: User?
@@ -19,6 +19,7 @@ struct AddServiceStationView: View {
         self._serviceStation = serviceStation
     }
     
+    @State private var id: String = ""
     @State private var name: String = ""
     @State private var country: String = ""
     @State private var city: String = ""
@@ -37,12 +38,15 @@ struct AddServiceStationView: View {
     @State private var empty: String = ""
     
     @State private var isSomeFieldIsEmpty = false
-    @State private var isSuccessfulAdding = false
-    @State private var isAddingError = false
+    @State private var isSuccessfulEditing = false
+    @State private var isEditingError = false
     
     @EnvironmentObject var realmManager: RealmManager
     
     @StateObject private var viewModel = ServiceStationViewModel()
+    
+    @State private var isDelete = false
+    @State private var serviceToDelete: Service?
     
     var body: some View {
         ZStack {
@@ -79,14 +83,14 @@ struct AddServiceStationView: View {
                     VStack {
                         
                         HStack {
-                            Text("Додавання")
+                            Text("Редагування")
                                 .font(.title)
                             
                             Spacer()
                         }
-                        .alert(isPresented: $isSuccessfulAdding) {
+                        .alert(isPresented: $isSuccessfulEditing) {
                             Alert(title: Text("Повідомлення"),
-                                  message: Text("Ви успішно додали сервіс."),
+                                  message: Text("Ви успішно відредагували інформацію про сервіс."),
                                   dismissButton: .default(Text("OK")) {
                                 withAnimation {
                                     selectedTab = .aboutService
@@ -99,9 +103,9 @@ struct AddServiceStationView: View {
                         Section {
                             CustomTextField(placeholder: "Назва", input: $name)
                         }
-                        .alert(isPresented: $isAddingError) {
+                        .alert(isPresented: $isEditingError) {
                             Alert(title: Text("Помилка"),
-                                  message: Text("Під час додавання виникла помилка. Спробуйте, будь ласка, ще раз."),
+                                  message: Text("Під час редагування виникла помилка. Спробуйте, будь ласка, ще раз."),
                                   dismissButton: .default(Text("OK")))
                         }
                         .padding(.horizontal)
@@ -269,7 +273,7 @@ struct AddServiceStationView: View {
                             .padding(.horizontal, 20)
                         
                         Section(content: {
-                            ForEach(viewModel.services.indices, id: \.self) { index in
+                            ForEach(Array(viewModel.services.enumerated()), id: \.element.id) { index, service in
                                 VStack(alignment: .leading) {
                                     HStack {
                                         Text("\(index + 1).")
@@ -277,26 +281,63 @@ struct AddServiceStationView: View {
                                             .foregroundColor(.secondary)
                                         
                                         Spacer()
+                                        
+                                        // Delete button
+                                        Button(action: {
+                                            serviceToDelete = service
+                                            isDelete = true
+                                        }) {
+                                            Image(systemName: "trash")
+                                                .foregroundColor(.red)
+                                        }
                                     }
                                     
                                     VStack {
                                         CustomTextField(placeholder: "Назва послуги", input: Binding(
-                                            get: { viewModel.services[index].name },
-                                            set: { viewModel.services[index].name = $0 }
+                                            get: { service.name },
+                                            set: { newValue in
+                                                if let index = viewModel.services.firstIndex(where: { $0.id == service.id }) {
+                                                    viewModel.services[index].name = newValue
+                                                }
+                                            }
                                         ))
                                         CustomTextField(placeholder: "Опис", input: Binding(
-                                            get: { viewModel.services[index].serviceDescription },
-                                            set: { viewModel.services[index].serviceDescription = $0 }
+                                            get: { service.serviceDescription },
+                                            set: { newValue in
+                                                if let index = viewModel.services.firstIndex(where: { $0.id == service.id }) {
+                                                    viewModel.services[index].serviceDescription = newValue
+                                                }
+                                            }
                                         ))
                                         CustomTextField(placeholder: "Ціна", input: Binding(
-                                            get: { viewModel.services[index].price },
-                                            set: { viewModel.services[index].price = $0 }
+                                            get: { service.price },
+                                            set: { newValue in
+                                                if let index = viewModel.services.firstIndex(where: { $0.id == service.id }) {
+                                                    viewModel.services[index].price = newValue
+                                                }
+                                            }
                                         ))
                                     }
                                     .padding(.vertical, 5)
                                 }
                             }
-                            .onDelete(perform: deleteService)
+                            .onDelete { indexSet in
+                                viewModel.services.remove(atOffsets: indexSet)
+                            }
+                            .alert(isPresented: $isDelete) {
+                                Alert(
+                                    title: Text("Повідомлення"),
+                                    message: Text("Ви впевнені, що хочете видалити послугу?"),
+                                    primaryButton: .default(Text("Так")) {
+                                        if let serviceToDelete = serviceToDelete {
+                                            if let index = viewModel.services.firstIndex(where: { $0.id == serviceToDelete.id }) {
+                                                viewModel.services.remove(at: index)
+                                            }
+                                        }
+                                    },
+                                    secondaryButton: .cancel(Text("Ні"))
+                                )
+                            }
                             
                             Button(action: addService) {
                                 Label("Додати послугу", systemImage: "plus.circle.fill")
@@ -314,11 +355,33 @@ struct AddServiceStationView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 5)
                         
-                        
                         Spacer()
                         
                         
                     } //: VStack
+                }
+                .onAppear {
+                    
+                    id = serviceStation!.id
+                    name = serviceStation!.name
+                    country = serviceStation!.location.country
+                    city = serviceStation!.location.city
+                    street = serviceStation!.location.street
+                    houseNumber = serviceStation!.location.houseNumber
+                    
+                    services = serviceStation!.services
+                    
+                    viewModel.services = serviceStation!.services
+                    
+                    managerID = serviceStation!.managerID
+                    
+                    monday = serviceStation!.workSchedule[0]
+                    tuesday = serviceStation!.workSchedule[1]
+                    wednesday = serviceStation!.workSchedule[2]
+                    thursday = serviceStation!.workSchedule[3]
+                    friday = serviceStation!.workSchedule[4]
+                    saturday = serviceStation!.workSchedule[5]
+                    sunday = serviceStation!.workSchedule[6]
                 }
                 .cornerRadius(20)
                 .shadow(radius: 10)
@@ -336,87 +399,50 @@ struct AddServiceStationView: View {
                             
                         } else {
                             
-                            let tempServiceStation = RealmServiceStation()
-                            tempServiceStation.name = name
-                            tempServiceStation.location?.country = country
-                            tempServiceStation.location?.city = city
-                            tempServiceStation.location?.street = street
-                            tempServiceStation.location?.houseNumber = houseNumber
+                            let tempLocation = Location(country: country, city: city, street: street, houseNumber: houseNumber)
                             
+                            var tempServices: [Service] = [Service(name: "", serviceDescription: "", price: "")]
+                            tempServices.removeAll()
                             for (index, service) in viewModel.services.enumerated() {
-                                let tempService = RealmService()
-                                tempService.name = service.name
-                                tempService.serviceDescription = service.serviceDescription
-                                tempService.price = service.price
+                                let tempService = Service(name: service.name, serviceDescription: service.serviceDescription, price: service.price)
                                 
-                                tempServiceStation.services.append(tempService)
+                                tempServices.append(tempService)
                             }
                             
-                            let tempMonday = RealmWorkSchedule()
-                            tempMonday.day = monday.day
-                            tempMonday.startTime = monday.startTime
-                            tempMonday.endTime = monday.endTime
-                            tempMonday.interval = monday.interval
+                            var tempWorkSchedule: [WorkSchedule] = [WorkSchedule(day: "", startTime: "", endTime: "", interval: "")]
+                            let tempMonday = WorkSchedule(day: monday.day, startTime: monday.startTime, endTime: monday.endTime, interval: monday.interval)
+                            let tempTuesday = WorkSchedule(day: tuesday.day, startTime: tuesday.startTime, endTime: tuesday.endTime, interval: tuesday.interval)
+                            let tempWendesday = WorkSchedule(day: wednesday.day, startTime: wednesday.startTime, endTime: wednesday.endTime, interval: wednesday.interval)
+                            let tempThursday = WorkSchedule(day: thursday.day, startTime: thursday.startTime, endTime: thursday.endTime, interval: thursday.interval)
+                            let tempFriday = WorkSchedule(day: friday.day, startTime: friday.startTime, endTime: friday.endTime, interval: friday.interval)
+                            let tempSaturday = WorkSchedule(day: saturday.day, startTime: saturday.startTime, endTime: saturday.endTime, interval: saturday.interval)
+                            let tempSunday = WorkSchedule(day: sunday.day, startTime: sunday.startTime, endTime: sunday.endTime, interval: sunday.interval)
                             
-                            let tempTuesday = RealmWorkSchedule()
-                            tempTuesday.day = tuesday.day
-                            tempTuesday.startTime = tuesday.startTime
-                            tempTuesday.endTime = tuesday.endTime
-                            tempTuesday.interval = tuesday.interval
+                            tempWorkSchedule.removeAll()
+                            tempWorkSchedule.append(tempMonday)
+                            tempWorkSchedule.append(tempTuesday)
+                            tempWorkSchedule.append(tempWendesday)
+                            tempWorkSchedule.append(tempThursday)
+                            tempWorkSchedule.append(tempFriday)
+                            tempWorkSchedule.append(tempSaturday)
+                            tempWorkSchedule.append(tempSunday)
                             
-                            let tempWendesday = RealmWorkSchedule()
-                            tempWendesday.day = wednesday.day
-                            tempWendesday.startTime = wednesday.startTime
-                            tempWendesday.endTime = wednesday.endTime
-                            tempWendesday.interval = wednesday.interval
+                            let tempServiceStation = ServiceStation(id: id, name: name, location: tempLocation, services: tempServices, managerID: user!.id, workSchedule: tempWorkSchedule, feedbackList: [Feedback(id: "", rating: "", text: "", date: "", author: "", serviceStationID: "")], masters: [Masters(serviceStationID: "", masterEmail: "")])
                             
-                            let tempThursday = RealmWorkSchedule()
-                            tempThursday.day = thursday.day
-                            tempThursday.startTime = thursday.startTime
-                            tempThursday.endTime = thursday.endTime
-                            tempThursday.interval = thursday.interval
                             
-                            let tempFriday = RealmWorkSchedule()
-                            tempFriday.day = friday.day
-                            tempFriday.startTime = friday.startTime
-                            tempFriday.endTime = friday.endTime
-                            tempFriday.interval = friday.interval
-                            
-                            let tempSaturday = RealmWorkSchedule()
-                            tempSaturday.day = saturday.day
-                            tempSaturday.startTime = saturday.startTime
-                            tempSaturday.endTime = saturday.endTime
-                            tempSaturday.interval = saturday.interval
-                            
-                            let tempSunday = RealmWorkSchedule()
-                            tempSunday.day = sunday.day
-                            tempSunday.startTime = sunday.startTime
-                            tempSunday.endTime = sunday.endTime
-                            tempSunday.interval = sunday.interval
-                            
-                            tempServiceStation.workSchedule.append(tempMonday)
-                            tempServiceStation.workSchedule.append(tempTuesday)
-                            tempServiceStation.workSchedule.append(tempWendesday)
-                            tempServiceStation.workSchedule.append(tempThursday)
-                            tempServiceStation.workSchedule.append(tempFriday)
-                            tempServiceStation.workSchedule.append(tempSaturday)
-                            tempServiceStation.workSchedule.append(tempSunday)
-                            
-                            tempServiceStation.managerID = user!.id
-                            
-                            if realmManager.addServiceStation(serviceStation: tempServiceStation) {
+                            if realmManager.editServiceStation(withNewServiceStationData: tempServiceStation) {
 
-                                isSuccessfulAdding = true
+                                isSuccessfulEditing = true
                             } else {
 
-                                isAddingError = true
+                                isEditingError = true
                             }
                             
                         }
                         
                     }
                 }) {
-                    Text("Додати")
+                    Text("Редагувати")
                         .foregroundColor(.black)
                         .font(.title2)
                 }
@@ -436,12 +462,8 @@ struct AddServiceStationView: View {
         viewModel.services.append(Service(name: "", serviceDescription: "", price: ""))
     }
     
-    private func deleteService(at offsets: IndexSet) {
-        viewModel.services.remove(atOffsets: offsets)
-    }
 }
 
 #Preview {
-    AddServiceStationView(selectedTab: .constant(.addServiceStation), user: .constant(nil), serviceStation: .constant(nil))
+    EditServiceStationView(selectedTab: .constant(.editServiceStation), user: .constant(nil), serviceStation: .constant(nil))
 }
-

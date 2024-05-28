@@ -15,5 +15,7 @@ class RealmServiceStation: Object {
     @Persisted var services: List<RealmService> = List<RealmService>()
     @Persisted var managerID: String = ""
     @Persisted var workSchedule: List<RealmWorkSchedule> = List<RealmWorkSchedule>()
+    @Persisted var feedbackList: List<RealmFeedback> = List<RealmFeedback>()
+    @Persisted var masters: List<RealmMasters> = List<RealmMasters>()
 }
 

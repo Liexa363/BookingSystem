@@ -318,7 +318,10 @@ class RealmManager: ObservableObject {
     }
     
     func getServiceStation(byManagerID managerID: String) -> ServiceStation? {
+        // Attempt to find the RealmServiceStation object by managerID
         if let realmServiceStation = realm.objects(RealmServiceStation.self).filter("managerID == %@", managerID).first {
+            
+            // Map RealmLocation to Location
             let location = Location(
                 country: realmServiceStation.location?.country ?? "",
                 city: realmServiceStation.location?.city ?? "",
@@ -326,6 +329,7 @@ class RealmManager: ObservableObject {
                 houseNumber: realmServiceStation.location?.houseNumber ?? ""
             )
             
+            // Map each RealmService to Service
             let services = Array(realmServiceStation.services.map { realmService in
                 return Service(
                     name: realmService.name,
@@ -334,6 +338,7 @@ class RealmManager: ObservableObject {
                 )
             })
             
+            // Map each RealmWorkSchedule to WorkSchedule
             let workSchedule = Array(realmServiceStation.workSchedule.map { realmWorkSchedule in
                 return WorkSchedule(
                     day: realmWorkSchedule.day,
@@ -343,14 +348,36 @@ class RealmManager: ObservableObject {
                 )
             })
             
+            // Map each RealmFeedback to Feedback
+            let feedbackList = Array(realmServiceStation.feedbackList.map { realmFeedback in
+                return Feedback(
+                    id: realmFeedback.id,
+                    rating: realmFeedback.rating,
+                    text: realmFeedback.text,
+                    date: realmFeedback.date, 
+                    author: realmFeedback.author, 
+                    serviceStationID: realmFeedback.serviceStationID
+                )
+            })
             
+            // Map each RealmMastersInServiceStation to MastersInServiceStation
+            let masters = Array(realmServiceStation.masters.map { realmMaster in
+                return Masters(
+                    serviceStationID: realmMaster.serviceStationID,
+                    masterEmail: realmMaster.masterEmail
+                )
+            })
+            
+            // Create the ServiceStation object
             let serviceStation = ServiceStation(
                 id: realmServiceStation.id,
                 name: realmServiceStation.name,
                 location: location,
                 services: services,
                 managerID: realmServiceStation.managerID,
-                workSchedule: workSchedule
+                workSchedule: workSchedule,
+                feedbackList: feedbackList, 
+                masters: masters
             )
             
             return serviceStation
@@ -358,6 +385,7 @@ class RealmManager: ObservableObject {
             return nil
         }
     }
+
     
     func addServiceStation(serviceStation: RealmServiceStation) -> Bool {
         do {
@@ -372,72 +400,56 @@ class RealmManager: ObservableObject {
     }
     
     func editServiceStation(withNewServiceStationData newServiceStationData: ServiceStation) -> Bool {
-        guard let stationToDelete = realm.objects(RealmServiceStation.self).filter("managerID == %@", newServiceStationData.managerID).first else {
-            print("Service Station with managerID \(newServiceStationData.managerID) not found")
+        guard let existingStation = realm.objects(RealmServiceStation.self).filter("id == %@", newServiceStationData.id).first else {
+            print("Service Station with ID \(newServiceStationData.id) not found")
             return false
         }
         
         do {
             try realm.write {
-                // Delete related RealmWorkSchedule objects
-                let workSchedulesToDelete = stationToDelete.workSchedule
-                realm.delete(workSchedulesToDelete)
+                // Update the existing service station's properties with the new data
+                existingStation.name = newServiceStationData.name
+                existingStation.location?.country = newServiceStationData.location.country
+                existingStation.location?.city = newServiceStationData.location.city
+                existingStation.location?.street = newServiceStationData.location.street
+                existingStation.location?.houseNumber = newServiceStationData.location.houseNumber
                 
-                // Delete related RealmService objects
-                let servicesToDelete = stationToDelete.services
-                realm.delete(servicesToDelete)
+                // Delete existing work schedules
+                realm.delete(existingStation.workSchedule)
                 
-                // Delete related RealmLocation object
-                if let locationToDelete = stationToDelete.location {
-                    realm.delete(locationToDelete)
+                // Add new work schedules
+                newServiceStationData.workSchedule.forEach { schedule in
+                    let tempWorkSchedule = RealmWorkSchedule()
+                    tempWorkSchedule.day = schedule.day
+                    tempWorkSchedule.startTime = schedule.startTime
+                    tempWorkSchedule.endTime = schedule.endTime
+                    tempWorkSchedule.interval = schedule.interval
+                    
+                    existingStation.workSchedule.append(tempWorkSchedule)
                 }
                 
-                // Delete the ServiceStation object itself
-                realm.delete(stationToDelete)
-            }
-        } catch {
-            print("Error deleting service station and related data: \(error)")
-            return false
-        }
-        
-        let serviceStation = RealmServiceStation()
-        serviceStation.name = newServiceStationData.name
-        serviceStation.location?.country = newServiceStationData.location.country
-        serviceStation.location?.city = newServiceStationData.location.city
-        serviceStation.location?.street = newServiceStationData.location.street
-        serviceStation.location?.houseNumber = newServiceStationData.location.houseNumber
-        
-        for (_, service) in newServiceStationData.services.enumerated() {
-            let tempService = RealmService()
-            tempService.name = service.name
-            tempService.serviceDescription = service.serviceDescription
-            tempService.price = service.price
-            
-            serviceStation.services.append(tempService)
-        }
-        
-        for (_, service) in newServiceStationData.workSchedule.enumerated() {
-            let tempWorkSchedule = RealmWorkSchedule()
-            tempWorkSchedule.day = service.day
-            tempWorkSchedule.startTime = service.startTime
-            tempWorkSchedule.endTime = service.endTime
-            tempWorkSchedule.interval = service.interval
-            
-            serviceStation.workSchedule.append(tempWorkSchedule)
-        }
-        
-        serviceStation.managerID = newServiceStationData.managerID
-        
-        do {
-            try realm.write {
-                realm.add(serviceStation)
+                // Delete existing services
+                realm.delete(existingStation.services)
+                
+                // Add new services
+                newServiceStationData.services.forEach { service in
+                    let tempService = RealmService()
+                    tempService.name = service.name
+                    tempService.serviceDescription = service.serviceDescription
+                    tempService.price = service.price
+                    
+                    existingStation.services.append(tempService)
+                }
+                
             }
             return true
         } catch {
-            print("Error adding service station: \(error)")
+            print("Error editing service station: \(error)")
             return false
         }
     }
+
+
     
     func getServiceStations() -> [ServiceStation] {
         let realmServiceStations = realm.objects(RealmServiceStation.self)
@@ -468,13 +480,33 @@ class RealmManager: ObservableObject {
                 )
             })
             
+            let feedbackList = Array(realmServiceStation.feedbackList.map { realmFeedback in
+                Feedback(
+                    id: realmFeedback.id,
+                    rating: realmFeedback.rating,
+                    text: realmFeedback.text,
+                    date: realmFeedback.date, 
+                    author: realmFeedback.author, 
+                    serviceStationID: realmFeedback.serviceStationID
+                )
+            })
+            
+            let masters = Array(realmServiceStation.masters.map { realmMaster in
+                Masters(
+                    serviceStationID: realmMaster.serviceStationID,
+                    masterEmail: realmMaster.masterEmail
+                )
+            })
+            
             let serviceStation = ServiceStation(
                 id: realmServiceStation.id,
                 name: realmServiceStation.name,
                 location: location,
                 services: services,
                 managerID: realmServiceStation.managerID,
-                workSchedule: workSchedule
+                workSchedule: workSchedule,
+                feedbackList: feedbackList, 
+                masters: masters
             )
             
             serviceStations.append(serviceStation)
@@ -482,6 +514,7 @@ class RealmManager: ObservableObject {
         
         return serviceStations
     }
+
     
     func deleteServiceStation(byID id: String) -> Bool {
         // Find the service station to delete by its ID
@@ -503,6 +536,9 @@ class RealmManager: ObservableObject {
                 // Delete related work schedule
                 realm.delete(stationToDelete.workSchedule)
                 
+                // Delete related feedback
+                realm.delete(stationToDelete.feedbackList)
+                
                 // Delete the service station itself
                 realm.delete(stationToDelete)
             }
@@ -512,6 +548,7 @@ class RealmManager: ObservableObject {
             return false
         }
     }
+
     
     func getUser(byManagerID managerID: String) -> User? {
         if let serviceStation = realm.objects(RealmServiceStation.self).filter("managerID == %@", managerID).first {
@@ -536,7 +573,7 @@ class RealmManager: ObservableObject {
         }
     }
     
-    func addBooking(booking: RealmBookingList) -> Bool {
+    func addBooking(booking: RealmBooking) -> Bool {
         do {
             try realm.write {
                 realm.add(booking)
@@ -550,7 +587,7 @@ class RealmManager: ObservableObject {
     
     func getBookedTimes(for date: String, serviceStationID: String) -> [String] {
         let realm = try! Realm()  // Initializing Realm can throw, so we use try!
-        let bookings = realm.objects(RealmBookingList.self)
+        let bookings = realm.objects(RealmBooking.self)
             .filter("date == %@ AND serviceStationID == %@", date, serviceStationID)
         
         var bookedTimes: [String] = []
@@ -559,6 +596,296 @@ class RealmManager: ObservableObject {
             bookedTimes.append(booking.time)
         }
         return bookedTimes
+    }
+    
+    func deleteBooking(byID id: String) -> Bool {
+        // Find the booking list to delete by its ID
+        guard let bookingToDelete = realm.objects(RealmBooking.self).filter("id == %@", id).first else {
+            print("Booking list with ID \(id) not found")
+            return false
+        }
+        
+        do {
+            try realm.write {
+                // Delete related service if it exists
+                if let service = bookingToDelete.service {
+                    realm.delete(service)
+                }
+                
+                // Delete the booking list itself
+                realm.delete(bookingToDelete)
+            }
+            return true
+        } catch {
+            print("Error deleting booking list: \(error)")
+            return false
+        }
+    }
+    
+    func getBookingList() -> [Booking] {
+        let realmBookingLists = realm.objects(RealmBooking.self)
+        
+        // Mapping RealmBookingList objects to BookingList objects
+        let bookingLists: [Booking] = realmBookingLists.map { realmBooking in
+            let serviceStation = getServiceStation(byID: realmBooking.serviceStationID)
+            let client = getUser(byID: realmBooking.clientID)
+            let service = Service(name: realmBooking.service?.name ?? "", serviceDescription: realmBooking.service?.serviceDescription ?? "", price: realmBooking.service?.price ?? "")
+            
+            return Booking(
+                id: realmBooking.id,
+                date: realmBooking.date,
+                time: realmBooking.time,
+                serviceStation: serviceStation,
+                client: client,
+                service: service
+            )
+        }
+        
+        return bookingLists
+    }
+    
+    func getServiceStation(byID id: String) -> ServiceStation {
+        guard let realmServiceStation = realm.objects(RealmServiceStation.self).filter("id == %@", id).first else {
+            // Handle the case where the service station is not found
+            return ServiceStation(
+                id: id,
+                name: "",
+                location: Location(country: "", city: "", street: "", houseNumber: ""),
+                services: [],
+                managerID: "",
+                workSchedule: [],
+                feedbackList: [], 
+                masters: []
+            )
+        }
+        
+        let location = Location(
+            country: realmServiceStation.location?.country ?? "",
+            city: realmServiceStation.location?.city ?? "",
+            street: realmServiceStation.location?.street ?? "",
+            houseNumber: realmServiceStation.location?.houseNumber ?? ""
+        )
+        
+        let services = Array(realmServiceStation.services.map { realmService in
+            Service(
+                name: realmService.name,
+                serviceDescription: realmService.serviceDescription,
+                price: realmService.price
+            )
+        })
+        
+        let workSchedule = Array(realmServiceStation.workSchedule.map { realmWorkSchedule in
+            WorkSchedule(
+                day: realmWorkSchedule.day,
+                startTime: realmWorkSchedule.startTime,
+                endTime: realmWorkSchedule.endTime,
+                interval: realmWorkSchedule.interval
+            )
+        })
+        
+        let feedbackList = Array(realmServiceStation.feedbackList.map { realmFeedback in
+            Feedback(
+                id: realmFeedback.id,
+                rating: realmFeedback.rating,
+                text: realmFeedback.text,
+                date: realmFeedback.date, 
+                author: realmFeedback.author, 
+                serviceStationID: realmFeedback.serviceStationID
+            )
+        })
+        
+        let masters = Array(realmServiceStation.masters.map { realmMaster in
+            Masters(
+                serviceStationID: realmMaster.serviceStationID,
+                masterEmail: realmMaster.masterEmail
+            )
+        })
+        
+        return ServiceStation(
+            id: realmServiceStation.id,
+            name: realmServiceStation.name,
+            location: location,
+            services: services,
+            managerID: realmServiceStation.managerID,
+            workSchedule: workSchedule,
+            feedbackList: feedbackList, 
+            masters: masters
+        )
+    }
+
+    
+    func getUser(byID id: String) -> User {
+        guard let realmUser = realm.objects(RealmUser.self).filter("id == %@", id).first else {
+            // Handle the case where the user is not found
+            return User(id: id, name: "", surname: "", phone: "", photo: "", email: "", password: "", role: "", date: "")
+        }
+        
+        return User(
+            id: realmUser.id,
+            name: realmUser.name,
+            surname: realmUser.surname,
+            phone: realmUser.phone,
+            photo: realmUser.photo,
+            email: realmUser.email,
+            password: realmUser.password,
+            role: realmUser.role,
+            date: realmUser.date
+        )
+    }
+    
+    func getBookingList(byServiceStationID serviceStationID: String) -> [Booking] {
+        // Fetch the bookings from Realm
+        let results = realm.objects(RealmBooking.self).filter("serviceStationID == %@", serviceStationID)
+        
+        // Map the results to BookingList
+        return results.map { realmBookingList in
+            return Booking(
+                id: realmBookingList.id,
+                date: realmBookingList.date,
+                time: realmBookingList.time,
+                serviceStation: getServiceStation(byID: realmBookingList.serviceStationID),
+                client: getUser(byID: realmBookingList.clientID),
+                service: realmBookingList.service?.toService() ?? Service(name: "", serviceDescription: "", price: "")
+            )
+        }
+    }
+    
+    func getBookingList(byClientID clientID: String) -> [Booking] {
+        // Fetch the bookings from Realm
+        let results = realm.objects(RealmBooking.self).filter("clientID == %@", clientID)
+        
+        // Map the results to BookingList
+        return results.map { realmBookingList in
+            return Booking(
+                id: realmBookingList.id,
+                date: realmBookingList.date,
+                time: realmBookingList.time,
+                serviceStation: getServiceStation(byID: realmBookingList.serviceStationID),
+                client: getUser(byID: realmBookingList.clientID),
+                service: realmBookingList.service?.toService() ?? Service(name: "", serviceDescription: "", price: "")
+            )
+        }
+    }
+    
+    func addFeedback(toServiceStationWithID id: String, feedback: Feedback) -> Bool {
+        guard let serviceStation = realm.objects(RealmServiceStation.self).filter("id == %@", id).first else {
+            print("Service Station with ID \(id) not found")
+            return false
+        }
+        
+        do {
+            try realm.write {
+                let realmFeedback = RealmFeedback()
+                realmFeedback.id = UUID().uuidString
+                realmFeedback.rating = feedback.rating
+                realmFeedback.text = feedback.text
+                realmFeedback.date = feedback.date
+                realmFeedback.author = feedback.author
+                realmFeedback.serviceStationID = feedback.serviceStationID
+                
+                serviceStation.feedbackList.append(realmFeedback)
+            }
+            return true
+        } catch {
+            print("Error adding feedback: \(error)")
+            return false
+        }
+    }
+    
+    func getFeedbackList(forServiceStationWithID id: String) -> [Feedback] {
+        guard let serviceStation = realm.objects(RealmServiceStation.self).filter("id == %@", id).first else {
+            print("Service Station with ID \(id) not found")
+            return []
+        }
+        
+        return serviceStation.feedbackList.map { realmFeedback in
+            return Feedback(
+                id: realmFeedback.id,
+                rating: realmFeedback.rating,
+                text: realmFeedback.text,
+                date: realmFeedback.date, 
+                author: realmFeedback.author, 
+                serviceStationID: realmFeedback.serviceStationID
+            )
+        }
+    }
+    
+    func getFeedbackList() -> [Feedback] {
+        let realmServiceStations = realm.objects(RealmServiceStation.self)
+        
+        // Map each RealmServiceStation's feedbackList to an array of Feedback
+        let feedbackList = Array(realmServiceStations.flatMap { $0.feedbackList.map { Feedback(id: $0.id, rating: $0.rating, text: $0.text, date: $0.date, author: $0.author, serviceStationID: $0.serviceStationID) } })
+        
+        return feedbackList
+    }
+    
+    func deleteFeedback(byID id: String) -> Bool {
+        do {
+            try realm.write {
+                // Find the feedback object by its ID
+                if let feedbackToDelete = realm.objects(RealmFeedback.self).filter("id == %@", id).first {
+                    // Delete the feedback object from Realm
+                    realm.delete(feedbackToDelete)
+                    return true
+                } else {
+                    print("Feedback with ID \(id) not found")
+                    return false
+                }
+            }
+        } catch {
+            print("Error deleting feedback: \(error)")
+            return false
+        }
+        return false
+    }
+    
+    func getMasterEmails(byServiceStationID id: String) -> [String] {
+        // Attempt to find the RealmServiceStation object by its ID
+        if let realmServiceStation = realm.objects(RealmServiceStation.self).filter("id == %@", id).first {
+            
+            // Map the masters property to extract the masterEmail values
+            let masterEmails = realmServiceStation.masters.map { $0.masterEmail }
+            
+            return Array(masterEmails)
+        } else {
+            // Handle the case where the service station is not found
+            print("Service Station with ID \(id) not found")
+            return []
+        }
+    }
+    
+    func refreshMasterEmails(forServiceStationID id: String, newEmails: [String]) -> Bool {
+        guard let realmServiceStation = realm.objects(RealmServiceStation.self).filter("id == %@", id).first else {
+            print("Service Station with ID \(id) not found")
+            return false
+        }
+        
+        do {
+            try realm.write {
+                // Remove existing masters
+                realm.delete(realmServiceStation.masters)
+                
+                // Add new master emails
+                for email in newEmails {
+                    let newMaster = RealmMasters()
+                    newMaster.serviceStationID = id
+                    newMaster.masterEmail = email
+                    realmServiceStation.masters.append(newMaster)
+                }
+            }
+            return true
+        } catch {
+            print("Error refreshing master emails: \(error)")
+            return false
+        }
+    }
+    
+    func getServiceStationID(byMasterEmail masterEmail: String) -> String? {
+        if let master = realm.objects(RealmMasters.self).filter("masterEmail == %@", masterEmail).first {
+            return master.serviceStationID
+        } else {
+            return nil
+        }
     }
     
     

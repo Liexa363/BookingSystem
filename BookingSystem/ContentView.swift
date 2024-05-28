@@ -25,6 +25,8 @@ struct ContentView: View {
     
     @State private var selectedServiceStation: ServiceStation? = nil
     
+    @State private var selectedBooking: Booking? = nil
+    
     var body: some View {
         VStack {
             
@@ -42,32 +44,28 @@ struct ContentView: View {
                 case .signIn:
                     SignInView(selectedTab: $selectedTab, user: $user)
                 case .clientHome:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation, selectedBooking: $selectedBooking)
                 case .clientBookingList:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation, selectedBooking: $selectedBooking)
                 case .aboutMe:
                     switch user!.role {
                     case "Manager":
-                        ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
+                        ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
                     case "Master":
-                        MasterHomeView(selectedTab: $selectedTab, user: $user)
+                        MasterHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
                     case "Administrator":
                         AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                     default:
-                        ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
+                        ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation, selectedBooking: $selectedBooking)
                     }
                 case .clientCar:
-                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation)
+                    ClientHomeView(selectedTab: $selectedTab, user: $user, car: $car, selectedServiceStation: $selectedServiceStation, selectedBooking: $selectedBooking)
                 case .masterBookingList:
-                    MasterHomeView(selectedTab: $selectedTab, user: $user)
+                    MasterHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
                 case .managerBookingList:
-                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
                 case .aboutService:
-                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
-                case .masterUsefulContacts:
-                    MasterHomeView(selectedTab: $selectedTab, user: $user)
-                case .managerUsefulContacts:
-                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation)
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
                 case .carList:
                     AdministratorHomeView(selectedTab: $selectedTab, user: $user)
                 case .serviceStationsList:
@@ -88,6 +86,22 @@ struct ContentView: View {
                     AboutServiceStationView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
                 case .clientBooking:
                     ClientBookingView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
+                case .administratorBookingList:
+                    AdministratorHomeView(selectedTab: $selectedTab, user: $user)
+                case .managerAboutBooking:
+                    ManagerAboutBookingView(selectedTab: $selectedTab, user: $user, selectedBooking: $selectedBooking)
+                case .clientAboutBooking:
+                    ClientAboutBookingView(selectedTab: $selectedTab, user: $user, selectedBooking: $selectedBooking)
+                case .clientFeedbackList:
+                    ClientFeedbackListView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
+                case .clientAddFeedback:
+                    ClientAddFeedbackView(selectedTab: $selectedTab, user: $user, selectedServiceStation: $selectedServiceStation)
+                case .managerFeedbackList:
+                    ManagerHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
+                case .masterServiceStation:
+                    MasterHomeView(selectedTab: $selectedTab, user: $user, serviceStation: $serviceStation, selectedBooking: $selectedBooking)
+                case .masterAboutBooking:
+                    MasterAboutBookingView(selectedTab: $selectedTab, user: $user, selectedBooking: $selectedBooking)
                 }
                 
             } else {

@@ -13,12 +13,14 @@ struct ClientHomeView: View {
     @Binding private var user: User?
     @Binding private var car: Car?
     @Binding private var selectedServiceStation: ServiceStation?
+    @Binding private var selectedBooking: Booking?
     
-    init(selectedTab: Binding<Pages>, user: Binding<User?>, car: Binding<Car?>, selectedServiceStation: Binding<ServiceStation?>) {
+    init(selectedTab: Binding<Pages>, user: Binding<User?>, car: Binding<Car?>, selectedServiceStation: Binding<ServiceStation?>, selectedBooking: Binding<Booking?>) {
         self._selectedTab = selectedTab
         self._user = user
         self._car = car
         self._selectedServiceStation = selectedServiceStation
+        self._selectedBooking  = selectedBooking
     }
     
     let clientTabItems = [
@@ -37,8 +39,7 @@ struct ClientHomeView: View {
             case .clientCar:
                 ClientCarView(selectedTab: $selectedTab, user: $user, car: $car)
             case .clientBookingList:
-                Text("ClientBookingList")
-                    .font(.title)
+                ClientBookingListView(selectedTab: $selectedTab, user: $user, selectedBooking: $selectedBooking)
             case .aboutMe:
                 AboutMeView(selectedTab: $selectedTab, user: $user)
             default:
@@ -48,12 +49,12 @@ struct ClientHomeView: View {
             
             Spacer()
             
-            CustomTabBar(selectedTab: $selectedTab, tabItems: clientTabItems)
+            CustomTabBar(selectedTab: $selectedTab, tabItems: clientTabItems, titleSize: 14)
             
         }
     }
 }
 
 #Preview {
-    ClientHomeView(selectedTab: .constant(.clientHome), user: .constant(nil), car: .constant(nil), selectedServiceStation: .constant(nil))
+    ClientHomeView(selectedTab: .constant(.clientHome), user: .constant(nil), car: .constant(nil), selectedServiceStation: .constant(nil), selectedBooking: .constant(nil))
 }

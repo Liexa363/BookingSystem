@@ -14,3 +14,13 @@ class RealmService: Object {
     @Persisted var price: String = ""
 }
 
+extension RealmService {
+    func toService() -> Service {
+        return Service(
+            name: self.name,
+            serviceDescription: self.serviceDescription,
+            price: self.price
+        )
+    }
+}
+

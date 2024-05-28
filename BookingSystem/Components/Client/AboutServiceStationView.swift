@@ -19,6 +19,8 @@ struct AboutServiceStationView: View {
         self._selectedServiceStation = selectedServiceStation
     }
     
+    @State var averageRating = 0
+    
     var body: some View {
         ZStack {
             
@@ -40,6 +42,9 @@ struct AboutServiceStationView: View {
                     
                     Spacer()
                     
+                }
+                .onAppear {
+                    averageRating = Int(StarView().averageRating(from: selectedServiceStation!.feedbackList) ?? 0)
                 }
                 .padding(.horizontal)
                 
@@ -267,6 +272,37 @@ struct AboutServiceStationView: View {
                                 }
                             }
                             
+                            Divider().padding(.vertical, 10)
+                            
+                            Button(action: {
+                                
+                                selectedTab = .clientFeedbackList
+                                
+                            }) {
+                                
+                                HStack {
+                                    Text("Відгуків: \(selectedServiceStation!.feedbackList.count)")
+                                        .font(.body)
+                                        .foregroundColor(.black)
+                                    
+                                    Spacer()
+                                    
+                                    HStack(spacing: 2) {
+                                        ForEach(0..<5) { index in
+                                            StarView(filled: index < averageRating)
+                                        }
+                                    }
+                                    
+                                    Image(systemName: "arrow.right.square")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(.black)
+                                        .padding(.leading)
+                                }
+                                
+                            }
+                            
                         }
                         .padding(.all, 30)
                         
@@ -279,8 +315,6 @@ struct AboutServiceStationView: View {
                 
                 Button(action: {
                     withAnimation {
-                        
-                        print("book button pressed")
                         
                         selectedTab = .clientBooking
                         

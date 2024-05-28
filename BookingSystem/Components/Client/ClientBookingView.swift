@@ -157,65 +157,75 @@ struct ClientBookingView: View {
                                 .padding(.vertical, 10)
                             
                             VStack {
-                                HStack {
-                                    Text("Години для запису:")
-                                        .font(.body)
-                                    
-                                    Spacer()
-                                }
-                                .padding(.bottom, 10)
-                                
                                 let timeSlots = generateTimeSlots(startTime: schedule.0, endTime: schedule.1, intervalMinutes: Int(schedule.2) ?? 60)
                                 
-                                ForEach(Array(timeSlots.enumerated()), id: \.element) { index, timeSlot in
+                                if !timeSlots.isEmpty {
+                                    HStack {
+                                        Text("Години для запису:")
+                                            .font(.body)
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(.bottom, 10)
                                     
-                                    Button(action: {
+                                    
+                                    ForEach(Array(timeSlots.enumerated()), id: \.element) { index, timeSlot in
                                         
-                                        print("row \(index) selected")
-                                        print("row \(timeSlot) selected")
-                                        
-                                        if selectedTimeSlot == timeSlot {
-                                            selectedTimeSlot = nil
-                                        } else {
-                                            selectedTimeSlot = timeSlot
-                                        }
-                                        
-                                    }) {
-                                        
-                                        HStack {
-                                            Text(timeSlot)
-                                                .font(.body)
-                                                .foregroundColor(.secondary)
-                                            
-                                            Spacer()
-                                            
-                                            if bookedTimes.contains(timeSlot) {
-                                                Text("Зайнято")
-                                                    .font(.body)
-                                                    .foregroundColor(.secondary)
-                                            } else {
-                                                Text("Вільно")
-                                                    .font(.body)
-                                                    .foregroundColor(.black)
-                                            }
+                                        Button(action: {
                                             
                                             if selectedTimeSlot == timeSlot {
-                                                Image(systemName: "checkmark")
-                                                    .foregroundColor(.blue)
+                                                selectedTimeSlot = nil
                                             } else {
-                                                Image(systemName: "checkmark")
-                                                    .opacity(0)
+                                                selectedTimeSlot = timeSlot
                                             }
+                                            
+                                        }) {
+                                            
+                                            HStack {
+                                                Text(timeSlot)
+                                                    .font(.body)
+                                                    .foregroundColor(.secondary)
+                                                
+                                                Spacer()
+                                                
+                                                if bookedTimes.contains(timeSlot) {
+                                                    Text("Зайнято")
+                                                        .font(.body)
+                                                        .foregroundColor(.secondary)
+                                                } else {
+                                                    Text("Вільно")
+                                                        .font(.body)
+                                                        .foregroundColor(.black)
+                                                }
+                                                
+                                                if selectedTimeSlot == timeSlot {
+                                                    Image(systemName: "checkmark")
+                                                        .foregroundColor(.blue)
+                                                } else {
+                                                    Image(systemName: "checkmark")
+                                                        .opacity(0)
+                                                }
+                                            }
+                                            
                                         }
+                                        .disabled(bookedTimes.contains(timeSlot))
                                         
+                                        if index != timeSlots.count - 1 {
+                                            Divider()
+                                                .padding(.vertical, 1)
+                                                .padding(.horizontal, 20)
+                                        }
                                     }
-                                    .disabled(bookedTimes.contains(timeSlot))
+                                } else {
                                     
-                                    if index != timeSlots.count - 1 {
-                                        Divider()
-                                            .padding(.vertical, 1)
-                                            .padding(.horizontal, 20)
+                                    HStack {
+                                        Text("Вихідний день")
+                                            .font(.body)
+                                            .foregroundColor(.secondary)
+                                        
+                                        Spacer()
                                     }
+                                    
                                 }
                                 
                             }
@@ -250,7 +260,7 @@ struct ClientBookingView: View {
                             tempRealmService.serviceDescription = selectedServiceStation!.services[selectedServiceIndex].serviceDescription
                             tempRealmService.price = selectedServiceStation!.services[selectedServiceIndex].price
                             
-                            let tempRealmBookingList = RealmBookingList()
+                            let tempRealmBookingList = RealmBooking()
                             
                             var dateToCheck: String = ""
                             let formatter = DateFormatter()
@@ -314,6 +324,10 @@ struct ClientBookingView: View {
     
     func generateTimeSlots(startTime: String, endTime: String, intervalMinutes: Int = 60) -> [String] {
         guard let startHour = Int(startTime), let endHour = Int(endTime) else {
+            return []
+        }
+        
+        if startHour == 0 && endHour == 0 && intervalMinutes == 0 {
             return []
         }
         

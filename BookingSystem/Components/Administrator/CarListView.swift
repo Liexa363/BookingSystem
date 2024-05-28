@@ -41,21 +41,26 @@ struct CarListView: View {
                     
                     Color.white
                     
-                    VStack {
-                        ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible())]) {
-                                ForEach(0..<cars.count, id: \.self) { index in
-                                    CarRow(car: cars[index], isDelete: $isDelete, carForDelete: $carForDelete)
-                                    
-                                    Divider().padding(.horizontal)
+                    if !cars.isEmpty {
+                        
+                        VStack {
+                            ScrollView {
+                                LazyVGrid(columns: [GridItem(.flexible())]) {
+                                    ForEach(0..<cars.count, id: \.self) { index in
+                                        CarRow(car: cars[index], isDelete: $isDelete, carForDelete: $carForDelete)
+                                        
+                                        Divider().padding(.horizontal)
+                                    }
                                 }
+                                .padding()
                             }
-                            .padding()
                         }
-                        .onAppear {
-                            
-                            cars = realmManager.getCars()
-                        }
+                    } else {
+                        
+                        Text("Автомобілів немає")
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
+                        
                     }
                     
                     HStack {
@@ -76,6 +81,10 @@ struct CarListView: View {
                             secondaryButton: .cancel(Text("Ні"))
                         )
                     }
+                }
+                .onAppear {
+                    
+                    cars = realmManager.getCars()
                 }
                 .cornerRadius(20)
                 .shadow(radius: 10)

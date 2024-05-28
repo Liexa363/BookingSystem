@@ -8,7 +8,8 @@
 import Foundation
 import RealmSwift
 
-class RealmBookingList: Object {
+class RealmBooking: Object {
+    @Persisted var id: String = UUID().uuidString
     @Persisted var date: String = ""
     @Persisted var time: String = ""
     @Persisted var serviceStationID: String = ""

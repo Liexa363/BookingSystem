@@ -20,6 +20,7 @@ struct AdministratorHomeView: View {
         TabItem(icon: "person.2.crop.square.stack", title: "Користувачі", tab: .userList),
         TabItem(icon: "car.2", title: "Автомобілі", tab: .carList),
         TabItem(icon: "wrench.adjustable", title: "Сервіси", tab: .serviceStationsList),
+        TabItem(icon: "clock", title: "Бронювання", tab: .administratorBookingList),
         TabItem(icon: "person", title: "Профіль", tab: .aboutMe)
     ]
     
@@ -33,6 +34,8 @@ struct AdministratorHomeView: View {
                 CarListView(selectedTab: $selectedTab, user: $user)
             case .serviceStationsList:
                 ServiceStationListView(selectedTab: $selectedTab, user: $user)
+            case .administratorBookingList:
+                BookingListView(selectedTab: $selectedTab, user: $user)
             case .aboutMe:
                 AboutMeView(selectedTab: $selectedTab, user: $user)
             default:
@@ -42,7 +45,7 @@ struct AdministratorHomeView: View {
             
             Spacer()
             
-            CustomTabBar(selectedTab: $selectedTab, tabItems: administratorTabItems)
+            CustomTabBar(selectedTab: $selectedTab, tabItems: administratorTabItems, titleSize: 11)
             
         }
     }
